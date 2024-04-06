@@ -7,7 +7,7 @@ sobre la información a manipular, el cual se divide en 3 ramas `main`, `develop
 
 [//]: <> (Adicionalmente el proyecto cuenta con 2 ambientes, el de `Producción` y `Desarrollo`.)
 
-![Imagen del Proyecto](./ImagenProjectMD.png)
+![Imagen del Proyecto](./AdminUsuarios.png)
 
 ## Estructura del Proyecto
 
@@ -68,3 +68,9 @@ Ejecutar los siguientes comandos:
 2. `npm i` ó `npm install`.
 4. Levantar la aplicación con: `npm run start`.
 5. Abrir en el navegador la siguiente url: `http://localhost:7200/`.
+
+
+### Rama Deployment
+
+Para poner en ejecución el proyecto de la presente rama se requieren los siguientes items:
+* Abrir el navegador web de su preferencia e ingresar al siguiente enlace web: `https://deployment--celadon-lolly-514a6d.netlify.app`.
