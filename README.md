@@ -31,7 +31,9 @@ Se utilizan las siguientes herramientas:
 * Angular V.16
 * PrimeNG V.16.9.1
 * PrimeFlex V.3.3.1
-* Firebase V.
+* Primeicons V.7.0.0
+* Firebase V.10.10.0
+* Angular/fire V.16.0.0
 
 ## Ramas
 
