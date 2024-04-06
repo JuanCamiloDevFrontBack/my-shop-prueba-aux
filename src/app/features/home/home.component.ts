@@ -94,7 +94,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   saleProduct(): void {
-    this.messageService.add({ severity: 'warning', summary: 'Advertencia', detail: 'Funcionalidad en desarrollo' });
+    this.messageService.add({ severity: 'warn', summary: 'Advertencia', detail: 'Funcionalidad en desarrollo' });
   }
 
   editProducts(): void {
