@@ -15,7 +15,7 @@ export class ProductService {
   }
 
   postCreateRegister(addProduct: Producto): Promise<unknown> {
-    addProduct.id = this.products.length;
+    addProduct.id = this.products.length + 1;
     this.products.push(addProduct);
     return Promise.resolve('Se agrego el producto al inventario');
   }
@@ -27,13 +27,11 @@ export class ProductService {
   }
 
   postDeleteRegister(id: number[]): Promise<unknown> {
-    const prodAux: Producto[] = [];
-    id.forEach(value => {
-      for (const prod of this.products) {
-        if (prod.id !== value) prodAux.push(prod);
-      }
+    let index = 0;
+    id.forEach(idSearch => {
+      index = this.products.findIndex(produ => produ.id === idSearch)
+      this.products.splice(index, 1);
     })
-    this.products = prodAux;
     return Promise.resolve('Se eliminó el producto en el inventario');
   }
 
