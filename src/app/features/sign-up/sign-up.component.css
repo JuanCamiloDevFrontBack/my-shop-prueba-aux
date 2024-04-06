@@ -1,0 +1,27 @@
+.container-inputs {
+    width: 100%;
+    text-align: center;
+}
+
+.aling-inputs-form {
+    margin: 0%;
+    padding: 0%;
+}
+
+.container-btn-google {
+    margin: 0% 0% 0%;
+}
+
+.error-message {
+    color: red;
+}
+
+.img-google {
+    width: 8%;
+    height: 8%;
+}
+
+.img-google, .msg-btn-google {
+    margin: 0%;
+    padding: 0%;
+}

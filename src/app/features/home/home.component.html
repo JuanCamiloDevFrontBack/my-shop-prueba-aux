@@ -1,0 +1,128 @@
+<div class="container">
+
+    <section class="grid flex justify-content-center">
+      <div class="col-12 flex justify-content-center" style="margin: 0% 0% 0%; padding: 0%;">
+        <h2>Gestión de Inventario</h2>
+      </div>
+      <div class="col-12 flex justify-content-center" style="margin: 0% 0% 0%; padding: 0%;">
+        <div class="col-10 text-right">
+          <button pButton type="button" label="Crear Producto" class="p-button-outlined p-button-success"
+            [disabled]="isVisibleForm" (click)="showForm()"></button>
+        </div>
+        <div class="col-2 text-center">
+          <button pButton type="button" label="Vender Producto" class="p-button-outlined p-button-warning"
+            (click)="venderProducto()"></button>
+        </div>
+      </div>
+      <div *ngIf="isVisibleForm" class="col-10">
+        <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+          <div class="field">
+            <label for="nameproduct">Nombre del Producto</label>
+            <div class="col-12 aling-inputs-form">
+              <input pInputText class="w-12" label="Nombre del Producto" formControlName="{{inputs.name}}" />
+            </div>
+            <!-- <div class="error-message" *ngIf="loginForm.get(inputs.email)?.errors !== null">
+                El campo esta vacío o el valor ingresado es inválido.
+              </div> -->
+          </div>
+          <div class="field flex align-items-center p-justify-center">
+            <div class="col-6 p-0">
+              <label for="price">Precio Unitario</label>
+              <div class="col aling-inputs-form">
+                <input pInputText class="w-12" label="Precio" formControlName="{{inputs.price}}" />
+              </div>
+              <div class="error-message" *ngIf="productForm.get(inputs.price)?.errors !== null">
+                  Ingresar un número valido y que sea mayor a cero.
+                </div>
+            </div>
+            <div class="col-6 p-0">
+              <label for="amount">Cantidad en Stock</label>
+              <div class="col aling-inputs-form">
+                <input pInputText class="w-12" label="Cantidad" formControlName="{{inputs.amount}}" />
+              </div>
+              <div class="error-message" *ngIf="productForm.get(inputs.amount)?.errors !== null">
+                Ingresar un número valido y que sea mayor a cero.
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="description">Descripción</label>
+            <div class="col aling-inputs-form">
+              <textarea pInputTextarea rows="5" id="descripcion" class="w-12"
+                formControlName="{{inputs.description}}"></textarea>
+            </div>
+            <!-- <div class="error-message" *ngIf="loginForm.get(inputs.pass)?.errors !== null">
+                El campo esta vacío o el valor ingresado es inválido.
+              </div> -->
+          </div>
+  
+          <section class="grid">
+            <div class="col-6">
+              <button pButton type="button" label="Limpiar"
+                class="flex items-center justify-center w-full p-button-secondary" (click)="this.productForm.reset()"></button>
+            </div>
+  
+            <div class="col-6">
+              <ng-container *ngIf="isCreate else btnEdit">
+                <button pButton type="submit" label="Guardar" class="w-12" [disabled]="productForm.invalid"></button>
+              </ng-container>
+  
+              <ng-template #btnEdit>
+                <button pButton type="button" label="Guardar" class="w-12" [disabled]="productForm.invalid" (click)="modifyProduct()"></button>
+              </ng-template>
+            </div>
+  
+            <div class="col-12">
+              <button pButton type="button" label="Cancelar" class="w-12 p-button-danger" (click)="this.isVisibleForm = false"></button>
+            </div>
+          </section>
+        </form>
+      </div>
+    </section>
+  
+    <br>
+  
+    <section *ngIf="selectedProducts.length > 0" class="flex p-justify-end">
+      <div class="col-11 text-right">
+        <button pButton type="button" label="Editar" class="p-button-text p-button-secondary" [disabled]="selectedProducts.length > 1"
+          (click)="editProducts()"></button>
+      </div>
+  
+      <div class="col-1 text-right">
+        <button pButton type="button" label="Eliminar" class="p-button-text p-button-danger"
+          (click)="deleteProducts()"></button>
+      </div>
+    </section>
+  
+    <section class="body">
+      <p-table [value]="productos" [(selection)]="selectedProducts">
+        <ng-template pTemplate="header">
+          <tr>
+            <th></th>
+            <th class="text-center">Nombre</th>
+            <th class="text-center">Cantidad en Stock</th>
+            <th class="text-center">Precio</th>
+            <th class="text-center">Descripción</th>
+            <th class="text-center">Stock muy Bajó</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-producto>
+          <tr>
+            <td class="text-center"><p-tableCheckbox [value]="producto"></p-tableCheckbox></td>
+            <td class="text-center">{{ producto[inputs.name] }}</td>
+            <td class="text-center">{{ producto[inputs.amount] }}</td>
+            <td class="text-center">{{ producto[inputs.price] }}</td>
+            <td class="text-center">{{ producto[inputs.description] }}</td>
+            <td class="text-center">
+              <i *ngIf="producto[inputs.amount] < 10" class="text-center pi pi-arrow-circle-down icon-alert-stock"></i>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="6" class="text-center">No hay registros.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </section>
+  </div>
