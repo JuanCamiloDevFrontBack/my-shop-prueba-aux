@@ -51,7 +51,7 @@ En estos archivos se encuentran las configuraciones de Firebase para su funciona
 
 ### `deployment`
 
-En la rama `deployment` encontrarás el proyecto de Angular listo para llevar a producción, en este momento se esta momento el proyecto en la plataforma de Netlify.
+En la rama `deployment` encontrarás el proyecto de Angular listo para llevar a producción.
 
 ## Instrucciones de Ejecución
 
