@@ -11,7 +11,7 @@
         </div>
         <div class="col-2 text-center">
           <button pButton type="button" label="Vender Producto" class="p-button-outlined p-button-warning"
-            (click)="venderProducto()"></button>
+            (click)="saleProduct()"></button>
         </div>
       </div>
       <div *ngIf="isVisibleForm" class="col-10">
@@ -21,9 +21,6 @@
             <div class="col-12 aling-inputs-form">
               <input pInputText class="w-12" label="Nombre del Producto" formControlName="{{inputs.name}}" />
             </div>
-            <!-- <div class="error-message" *ngIf="loginForm.get(inputs.email)?.errors !== null">
-                El campo esta vacío o el valor ingresado es inválido.
-              </div> -->
           </div>
           <div class="field flex align-items-center p-justify-center">
             <div class="col-6 p-0">
@@ -51,9 +48,6 @@
               <textarea pInputTextarea rows="5" id="descripcion" class="w-12"
                 formControlName="{{inputs.description}}"></textarea>
             </div>
-            <!-- <div class="error-message" *ngIf="loginForm.get(inputs.pass)?.errors !== null">
-                El campo esta vacío o el valor ingresado es inválido.
-              </div> -->
           </div>
   
           <section class="grid">
