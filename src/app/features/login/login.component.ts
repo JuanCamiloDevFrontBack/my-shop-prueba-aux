@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit(): void {  
+  onSubmit(): void {
     this.authService.logInWithEmailAndPassword(this.loginForm.value);
   }
 
