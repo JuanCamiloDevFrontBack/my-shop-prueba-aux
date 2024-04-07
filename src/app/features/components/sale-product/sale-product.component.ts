@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Producto } from 'src/app/core/interfaces/producto';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ProductE, Producto } from 'src/app/core/interfaces/producto';
 
 @Component({
   selector: 'app-sale-product',
@@ -11,7 +11,9 @@ import { Producto } from 'src/app/core/interfaces/producto';
   templateUrl: './sale-product.component.html',
   styleUrls: ['./sale-product.component.css']
 })
-export class SaleProductComponent {
+export class SaleProductComponent implements OnInit {
+
+  inputs = ProductE;
 
   productos: Producto[] = [
     { id: 1, nameProduct: 'Producto 1', priceProduct: 10, amountProduct: 100, descriptionProduct: '' },
@@ -21,6 +23,26 @@ export class SaleProductComponent {
   productoSeleccionado!: Producto;
   cantidad!: number;
   factura: { producto: Producto, cantidad: number, total: number }[] = [];
+  billForm!: FormGroup;
+
+  private readonly fb = inject(FormBuilder);
+
+  ngOnInit(): void {
+      this.initVariables();
+      this.createFormBill();
+  }
+
+  initVariables(): void {
+
+  }
+
+  createFormBill(): void {
+    const { amount, ...prod } = ProductE;
+    this.billForm = this.fb.group({
+      [prod.name]: ['', Validators.required],
+      [amount]: [0, Validators.required]
+    });
+  }
 
   agregarProducto(): void {
     if (!this.productoSeleccionado || this.cantidad <= 0) {
@@ -41,6 +63,10 @@ export class SaleProductComponent {
 
   calcularTotal(): number {
     return this.factura.reduce((total, item) => total + item.total, 0);
+  }
+
+  back(): void {
+    // this.authService.loadPageLogin();
   }
 
 }

@@ -1,15 +1,36 @@
 <!-- apruebe en la factura para que decuente -->
-<div class="p-fluid">
-    <h2>Venta de Productos</h2>
-    <div class="p-field">
-      <label for="producto">Producto</label>
-      <p-dropdown [options]="productos" [(ngModel)]="productoSeleccionado"></p-dropdown>
-    </div>
-    <div class="p-field">
-      <label for="cantidad">Cantidad</label>
-      <input id="cantidad" type="number" pInputNumber [(ngModel)]="cantidad" [min]="1" />
-    </div>
-    <button pButton type="button" label="Agregar a Factura" icon="pi pi-plus" (click)="agregarProducto()"></button>
+<div class="grid flex justify-content-center">
+    <div class="col-12 flex align-items-center justify-content-center">
+        <h2>Venta de Productos</h2>
+      </div>
+      <div class="col-10">
+        <form [formGroup]="billForm" (ngSubmit)="agregarProducto()">
+            <div class="field">
+                <label for="producto">Producto</label>
+                <div class="col aling-inputs-form">
+                    <p-dropdown class="w-12" [options]="productos" formControlName="{{inputs.name}}"></p-dropdown>
+                </div>
+                <div class="error-message" *ngIf="billForm.get(inputs.name)?.errors !== null">
+                  El campo no puede estar vacío.
+                </div>
+              </div>
+
+              <div class="p-field">
+                <label for="cantidad">Cantidad</label>
+                <input pInputText class="w-12" label="Cantidad" formControlName="{{inputs.amount}}" />
+              </div>
+
+              <section class="grid">
+                <div class="col-6">
+                  <button pButton type="button" label="Cancelar" class="w-12 p-button-secondary" (click)="back()"></button>
+                </div>
+                <div class="col-6">
+                  <button pButton type="submit" label="Agregar" class="w-12" [disabled]="billForm.invalid"></button>
+                </div>
+              </section>
+        </form>
+      </div>
+ 
     <h3>Factura</h3>
     <table class="p-table">
       <thead>
