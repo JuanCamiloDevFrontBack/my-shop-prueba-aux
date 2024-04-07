@@ -104,8 +104,8 @@
           <tr>
             <td class="text-center"><p-tableCheckbox [value]="producto"></p-tableCheckbox></td>
             <td class="text-center">{{ producto[inputs.name] }}</td>
-            <td class="text-center">{{ producto[inputs.amount] }}</td>
             <td class="text-center">{{ producto[inputs.price] }}</td>
+            <td class="text-center" [ngClass]="{'alert-stock': producto[inputs.amount] < 10}">{{ producto[inputs.amount] }}</td>
             <td class="text-center">{{ producto[inputs.description] }}</td>
             <td class="text-center">
               <i *ngIf="producto[inputs.amount] < 10" class="text-center pi pi-arrow-circle-down icon-alert-stock"></i>

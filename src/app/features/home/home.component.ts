@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Subject, takeUntil } from 'rxjs';
 import { ProductE, Producto } from 'src/app/core/interfaces/producto';
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   unsuscribe$!: Subject<void>
 
   private readonly stockHttp = inject(HttpApiService);
+  private readonly router = inject(Router);
   private readonly fb = inject(FormBuilder);
   private readonly messageService = inject(MessageService);
 
@@ -95,6 +97,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   saleProduct(): void {
     this.messageService.add({ severity: 'warn', summary: 'Advertencia', detail: 'Funcionalidad en desarrollo' });
+    this.router.navigate(['sale-product']);
   }
 
   editProducts(): void {
