@@ -1,55 +1,49 @@
 <!-- apruebe en la factura para que decuente -->
 <div class="grid flex justify-content-center">
-    <div class="col-12 flex align-items-center justify-content-center">
-        <h2>Venta de Productos</h2>
-      </div>
-      <div class="col-10">
-        <form [formGroup]="billForm" (ngSubmit)="agregarProducto()">
-            <div class="field">
-                <label for="producto">Producto</label>
-                <div class="col aling-inputs-form">
-                    <p-dropdown class="w-12" [options]="productos" formControlName="{{inputs.name}}"></p-dropdown>
-                </div>
-                <div class="error-message" *ngIf="billForm.get(inputs.name)?.errors !== null">
-                  El campo no puede estar vacío.
-                </div>
-              </div>
-
-              <div class="p-field">
-                <label for="cantidad">Cantidad</label>
-                <input pInputText class="w-12" label="Cantidad" formControlName="{{inputs.amount}}" />
-              </div>
-
-              <section class="grid">
-                <div class="col-6">
-                  <button pButton type="button" label="Cancelar" class="w-12 p-button-secondary" (click)="back()"></button>
-                </div>
-                <div class="col-6">
-                  <button pButton type="submit" label="Agregar" class="w-12" [disabled]="billForm.invalid"></button>
-                </div>
-              </section>
-        </form>
-      </div>
- 
-    <h3>Factura</h3>
-    <table class="p-table">
-      <thead>
-        <tr>
-          <th>Producto</th>
-          <th>Cantidad</th>
-          <th>Precio Unitario</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of factura">
-          <td>{{ item.producto.nameProduct }}</td>
-          <td>{{ item.cantidad }}</td>
-          <td>{{ item.producto.priceProduct }}</td>
-          <td>{{ item.total }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <div>Total: {{ calcularTotal() }}</div>
+  <div class="col-12 flex align-items-center justify-content-center">
+    <h2>Venta de Productos</h2>
   </div>
-  
+  <div class="col-10">
+    <form [formGroup]="billForm" (ngSubmit)="agregarProducto()">
+      <div class="field">
+        <label for="producto">Producto</label>
+        <div class="col aling-inputs-form">
+          <p-dropdown class="text-center" [style]="{'width':'100%'}" [options]="productos" [optionLabel]="'nameProduct'"
+            formControlName="{{inputs.name}}"></p-dropdown>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="cantidad">Cantidad</label>
+        <div class="col aling-inputs-form">
+          <input pInputText class="w-12 text-center" label="Cantidad" formControlName="{{inputs.amount}}" />
+        </div>
+      </div>
+
+      <section class="grid">
+        <div class="col-6">
+          <button pButton type="button" label="Cancelar" class="w-12 p-button-secondary" (click)="back()"></button>
+        </div>
+        <div class="col-6">
+          <button pButton type="submit" label="Agregar" class="w-12" [disabled]="billForm.invalid"></button>
+        </div>
+      </section>
+    </form>
+  </div>
+
+  <p-card class="w-7 text-center" header="Factura" [style]="{'border': '6px solid gray'}">
+
+    <div class="grid" *ngFor="let producto of factura">
+      <div class="col-6">Producto:</div>
+      <div class="col-6">{{ producto.nameProduct }}:</div>
+      <div class="col-6">Cantidad:</div>
+      <div class="col-6">{{ producto.amountProduct }}:</div>
+      <div class="col-6">Precio Unitario:</div>
+      <div class="col-6">{{ producto.priceProduct }}:</div>
+    </div>
+
+    <p-divider></p-divider>
+
+    <div>Total: {{ calcularTotal() }}</div>
+  </p-card>
+</div>

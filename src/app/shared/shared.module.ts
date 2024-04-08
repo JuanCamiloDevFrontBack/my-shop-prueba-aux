@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DividerModule } from 'primeng/divider';
 
 @NgModule({
   declarations: [],
@@ -20,6 +21,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     ToastModule,
     TableModule,
     InputTextareaModule,
+    DividerModule,
   ],
   exports: [
     DropdownModule,
@@ -29,6 +31,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     ToastModule,
     TableModule,
     InputTextareaModule,
+    DividerModule,
   ]
 })
 export class SharedModule { }

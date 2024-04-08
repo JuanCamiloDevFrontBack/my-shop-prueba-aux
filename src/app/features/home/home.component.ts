@@ -98,6 +98,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   saleProduct(): void {
     this.messageService.add({ severity: 'warn', summary: 'Advertencia', detail: 'Funcionalidad en desarrollo' });
     this.router.navigate(['sale-product']);
+    // if (this.productos.length > 0) {
+    //   this.router.navigate(['sale-product']);
+    //   return;
+    // }
+
+    // this.messageService.add({ severity: 'info', summary: 'Información', detail: 'Registre en el inventario al menos un producto para poder efectuar la venta.' });
   }
 
   editProducts(): void {
