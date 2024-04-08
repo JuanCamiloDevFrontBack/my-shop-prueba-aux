@@ -12,3 +12,8 @@ export enum ProductE {
     [ProductE.amount]: number;
     [ProductE.description]: string;
   }
+
+  export interface BillF {
+    [ProductE.name]: Producto;
+    [ProductE.amount]: number;
+  }

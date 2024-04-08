@@ -1,10 +1,12 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProductE, Producto } from 'src/app/core/interfaces/producto';
 import { Router } from '@angular/router';
 import { HttpApiService } from 'src/app/core/services/http-api.service';
+import { ProductService } from 'src/app/core/services/product.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-sale-product',
@@ -13,31 +15,47 @@ import { HttpApiService } from 'src/app/core/services/http-api.service';
   templateUrl: './sale-product.component.html',
   styleUrls: ['./sale-product.component.css']
 })
-export class SaleProductComponent implements OnInit {
+export class SaleProductComponent implements OnInit, OnDestroy {
 
   inputs = ProductE;
 
-  productos: Producto[] = [];
-  productoSeleccionado!: Producto;
-  cantidad!: number;
-  factura: Producto[] = [];
   billForm!: FormGroup;
+  productos: Producto[] = [];
+  factura: Producto[] = [];
+  total!: number;
+
+  unsuscribe$!: Subject<void>;
 
   private readonly router = inject(Router);
   private readonly fb = inject(FormBuilder);
+  private readonly prodService = inject(ProductService);
   private readonly stockHttp = inject(HttpApiService);
 
   ngOnInit(): void {
-      this.initVariables();
-      this.createFormBill();
+    this.initVariables();
+    this.createFormBill();
+  }
+
+  ngOnDestroy(): void {
+      this.unsuscribe$.next();
+      this.unsuscribe$.complete();
   }
 
   initVariables(): void {
+    this.total = 0;
+    this.unsuscribe$ = new Subject();
     this.stockHttp.getStockProductHttp()
-    .then(products => {
-      this.productos = products as Producto[];
-      this.factura = this.productos;
-    });
+      .then(prod => {
+        this.productos = prod as Producto[];
+      });
+    this.showBill();
+  }
+
+  showBill(): void {
+    this.stockHttp.getBillHttp()
+      .then(bill => {
+        this.factura = bill as Producto[];
+      });
   }
 
   createFormBill(): void {
@@ -46,28 +64,38 @@ export class SaleProductComponent implements OnInit {
       [prod.name]: [null, Validators.required],
       [amount]: [null, Validators.required]
     });
+    this.isAmountValid();
+  }
+
+  inputProdForm(): Producto {
+    return this.billForm.get(ProductE.name)?.value;
+  }
+
+  isAmountValid(): void {
+    const { amount } = ProductE;
+
+    this.billForm.get(amount)?.valueChanges
+      .pipe(takeUntil(this.unsuscribe$))
+      .subscribe(value => {
+        if (value > this.inputProdForm()?.[ProductE.amount]) {
+          this.billForm.get(ProductE.amount)?.setErrors({
+            invalidValue: true
+          });
+        }
+      });
   }
 
   agregarProducto(): void {
-    // if (!this.productoSeleccionado || this.cantidad <= 0) {
-    //   return;
-    // }
-    // const productoExistente = this.factura.find(item => item.producto['nameProduct'] === this.productoSeleccionado['nameProduct']);
-    // if (productoExistente) {
-    //   productoExistente.cantidad += this.cantidad;
-    //   productoExistente.total = productoExistente.cantidad * productoExistente.producto['priceProduct'];
-    // } else {
-    //   const total = this.cantidad * this.productoSeleccionado['priceProduct'];
-    //   this.factura.push({ producto: this.productoSeleccionado, cantidad: this.cantidad, total });
-    // }
-    // // Descontar la cantidad vendida del inventario del producto
-    // this.productoSeleccionado['amountProduct'] -= this.cantidad;
-    // this.cantidad = 0;
-  }
+    if (this.factura.length === 0) {
+      this.stockHttp.updateBillHttp(this.billForm.value);
+      return;
+    }
 
-  calcularTotal(): number {
-    // return this.factura.reduce((total, item) => total + item.total, 0);
-    return 0;
+    const newRegister = this.prodService.isRegisterDuplicateBill(this.inputProdForm());
+    if (newRegister) {
+      this.stockHttp.updateBillHttp(this.billForm.value);
+    }
+    this.showBill();
   }
 
   back(): void {

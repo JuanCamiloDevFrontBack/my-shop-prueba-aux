@@ -1,6 +1,6 @@
 // import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Producto } from '../interfaces/producto';
+import { BillF, Producto } from '../interfaces/producto';
 import { ProductService } from './product.service';
 
 @Injectable({
@@ -35,6 +35,16 @@ export class HttpApiService {
       arrId.push(prod.id);
     });
     return this.httpFake.postDeleteRegister(arrId);
+  }
+
+  getBillHttp(): Promise<unknown> {
+    // this.http.get('url-api/endpoint');
+    return this.httpFake.getRegistersBillHttpFake();
+  }
+
+  updateBillHttp(addProduct: BillF): Promise<unknown> {
+    // this.http.put('url-api/endpoint', addProduct);
+    return this.httpFake.postAddRegisterBill(addProduct);
   }
 
 }

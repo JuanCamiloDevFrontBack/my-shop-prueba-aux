@@ -18,6 +18,9 @@
         <div class="col aling-inputs-form">
           <input pInputText class="w-12 text-center" label="Cantidad" formControlName="{{inputs.amount}}" />
         </div>
+        <div class="error-message" *ngIf="billForm.get(inputs.amount)?.errors !== null">
+          La cantidad ingresda del producto es invalida, excede el stock que se tiene almacenado.
+        </div>
       </div>
 
       <section class="grid">
@@ -31,19 +34,21 @@
     </form>
   </div>
 
-  <p-card class="w-7 text-center" header="Factura" [style]="{'border': '6px solid gray'}">
+  <p-card *ngIf="factura.length > 0" class="w-7 text-center" header="Factura" [style]="{'border': '6px solid gray'}">
 
-    <div class="grid" *ngFor="let producto of factura">
-      <div class="col-6">Producto:</div>
-      <div class="col-6">{{ producto.nameProduct }}:</div>
-      <div class="col-6">Cantidad:</div>
-      <div class="col-6">{{ producto.amountProduct }}:</div>
-      <div class="col-6">Precio Unitario:</div>
-      <div class="col-6">{{ producto.priceProduct }}:</div>
-    </div>
+    <section class="grid">
+      <div class="col-4"><strong>Producto:</strong></div>
+      <div class="col-4"><strong>Cantidad:</strong></div>
+      <div class="col-4"><strong>Precio Unitario:</strong></div>
+    </section>
+    <section class="grid" *ngFor="let producto of factura">
+      <div class="col-4">{{ producto.nameProduct }}</div>
+      <div class="col-4">{{ producto.amountProduct }}</div>
+      <div class="col-4">{{ producto.priceProduct }}</div>
+    </section>
 
     <p-divider></p-divider>
 
-    <div>Total: {{ calcularTotal() }}</div>
+    <div>Total: {{ total }}</div>
   </p-card>
 </div>
