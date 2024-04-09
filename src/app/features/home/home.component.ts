@@ -91,7 +91,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     this.stockHttp.createProductStockHttp(this.productForm.value)
     .then(msg => {
-      this.messageService.add({ severity: 'success', summary: 'Ación Éxitosa', detail: msg as string });
+      this.messageService.add({ severity: 'success', summary: 'Acción Éxitosa', detail: msg as string });
       this.productForm.reset();
       this.showProductTable();
     });
@@ -128,7 +128,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   modifyProduct(): void {
     this.stockHttp.updateProductStockHttp(this.productForm.value)
     .then(msg => {
-      this.messageService.add({ severity: 'success', summary: 'Ación Éxitosa', detail: msg as string });
+      this.messageService.add({ severity: 'success', summary: 'Acción Éxitosa', detail: msg as string });
       this.productForm.reset();
       this.isCreate = true;
       this.isVisibleForm = false;
@@ -139,7 +139,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   deleteProducts(): void {
     this.stockHttp.deleteProductStockHttp(this.selectedProducts)
     .then(msg => {
-      this.messageService.add({ severity: 'success', summary: 'Ación Éxitosa', detail: msg as string });
+      this.messageService.add({ severity: 'success', summary: 'Acción Éxitosa', detail: msg as string });
       this.productForm.reset();
       this.isCreate = true;
       this.isVisibleForm = false;
