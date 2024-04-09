@@ -14,7 +14,6 @@ import { HttpApiService } from 'src/app/core/services/http-api.service';
 export class HomeComponent implements OnInit, OnDestroy {
 
   inputs = ProductE;
-  newForm = 1;
   productForm!: FormGroup;
 
   isCreate = true;
@@ -83,7 +82,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.productForm.get(campo)?.setErrors({
         invalidValue: true
       });
-    } 
+    }
+
+    const options = { emitEvent: false };
+    this.productForm.get(campo)?.setValue(Number(input), options);
   }
 
   onSubmit(): void {

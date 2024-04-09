@@ -11,12 +11,15 @@ export class ProductService {
 
   constructor() { }
 
-  isRegisterDuplicateBill(register: Producto): boolean {
-    const exist = this.bill.some(item => item.id === register.id);
+  isRegisterDuplicateBill(addProduct: BillF): boolean {
+    const { nameProduct, amountProduct } = structuredClone(addProduct);
+    const exist = this.bill.some(item => item.id === nameProduct.id);
 
     if (exist) {
-      const index = this.bill.findIndex(item => item.id === register.id);
-      this.bill[index][ProductE.amount] += register[ProductE.amount];
+      const index = this.bill.findIndex(item => item.id === nameProduct.id);
+      this.bill[index][ProductE.amount] += Number(amountProduct);
+      const ind = this.products.findIndex(produ => produ.id === nameProduct.id);
+      this.products[ind][ProductE.amount] -= Number(amountProduct);
       return false;
     }
     return true;
@@ -55,10 +58,10 @@ export class ProductService {
     const { nameProduct, amountProduct } = structuredClone(addProduct);
     let index = 0;
 
-    nameProduct[ProductE.amount] = amountProduct;
+    nameProduct[ProductE.amount] = Number(amountProduct);
     this.bill.push(nameProduct);
     index = this.products.findIndex(produ => produ.id === nameProduct.id)
-    this.products[index][ProductE.amount] -= amountProduct;
+    this.products[index][ProductE.amount] -= Number(amountProduct);
     return Promise.resolve('Se agregó el producto en la factura');
   }
 

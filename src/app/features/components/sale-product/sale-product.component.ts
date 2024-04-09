@@ -37,21 +37,23 @@ export class SaleProductComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-      this.unsuscribe$.next();
-      this.unsuscribe$.complete();
+    this.billForm.reset();
+    this.factura = [];
+    this.unsuscribe$.next();
+    this.unsuscribe$.complete();
   }
 
   initVariables(): void {
     this.total = 0;
     this.unsuscribe$ = new Subject();
-    this.stockHttp.getStockProductHttp()
-      .then(prod => {
-        this.productos = prod as Producto[];
-      });
     this.showBill();
   }
 
   showBill(): void {
+    this.stockHttp.getStockProductHttp()
+      .then(prod => {
+        this.productos = prod as Producto[];
+      });
     this.stockHttp.getBillHttp()
       .then(bill => {
         this.factura = bill as Producto[];
@@ -77,8 +79,8 @@ export class SaleProductComponent implements OnInit, OnDestroy {
     this.billForm.get(amount)?.valueChanges
       .pipe(takeUntil(this.unsuscribe$))
       .subscribe(value => {
-        if (value > this.inputProdForm()?.[ProductE.amount]) {
-          this.billForm.get(ProductE.amount)?.setErrors({
+        if (Number(value) > +this.inputProdForm()?.[amount]) {
+          this.billForm.get(amount)?.setErrors({
             invalidValue: true
           });
         }
@@ -88,13 +90,16 @@ export class SaleProductComponent implements OnInit, OnDestroy {
   agregarProducto(): void {
     if (this.factura.length === 0) {
       this.stockHttp.updateBillHttp(this.billForm.value);
+      this.billForm.reset();
+      this.showBill();
       return;
     }
 
-    const newRegister = this.prodService.isRegisterDuplicateBill(this.inputProdForm());
+    const newRegister = this.prodService.isRegisterDuplicateBill(this.billForm.value);
     if (newRegister) {
       this.stockHttp.updateBillHttp(this.billForm.value);
     }
+    this.billForm.reset();
     this.showBill();
   }
 
