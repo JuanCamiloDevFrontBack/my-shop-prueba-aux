@@ -87,6 +87,10 @@ export class SaleProductComponent implements OnInit, OnDestroy {
       });
   }
 
+  trackByProductBill(index: number, item: Producto): number {
+    return item.id;
+  }
+
   agregarProducto(): void {
     if (this.factura.length === 0) {
       this.stockHttp.updateBillHttp(this.billForm.value);

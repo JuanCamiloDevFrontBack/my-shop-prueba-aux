@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   showProductTable(): void {
     this.stockHttp.getStockProductHttp()
-    .then(products => this.productos = products as Producto[]);
+      .then(products => this.productos = products as Producto[]);
   }
 
   showForm(): void {
@@ -77,11 +77,12 @@ export class HomeComponent implements OnInit, OnDestroy {
       .subscribe(value => this.isValueInputNumber(value, ProductE.amount));
   }
 
-  isValueInputNumber(input: string, campo: string): void { 
+  isValueInputNumber(input: string, campo: string): void {
     if (isNaN(+input) || (Number(input) < 1)) {
       this.productForm.get(campo)?.setErrors({
         invalidValue: true
       });
+      return;
     }
 
     const options = { emitEvent: false };
@@ -90,11 +91,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     this.stockHttp.createProductStockHttp(this.productForm.value)
-    .then(msg => {
-      this.messageService.add({ severity: 'success', summary: 'Acción Éxitosa', detail: msg as string });
-      this.productForm.reset();
-      this.showProductTable();
-    });
+      .then(msg => {
+        this.messageService.add({ severity: 'success', summary: 'Acción Éxitosa', detail: msg as string });
+        this.productForm.reset();
+      });
   }
 
   saleProduct(): void {
@@ -127,25 +127,22 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   modifyProduct(): void {
     this.stockHttp.updateProductStockHttp(this.productForm.value)
-    .then(msg => {
-      this.messageService.add({ severity: 'success', summary: 'Acción Éxitosa', detail: msg as string });
-      this.productForm.reset();
-      this.isCreate = true;
-      this.isVisibleForm = false;
-      this.showProductTable();
-    });
+      .then(msg => {
+        this.messageService.add({ severity: 'success', summary: 'Acción Éxitosa', detail: msg as string });
+        this.productForm.reset();
+        this.isCreate = true;
+        this.isVisibleForm = false;
+      });
   }
 
   deleteProducts(): void {
     this.stockHttp.deleteProductStockHttp(this.selectedProducts)
-    .then(msg => {
-      this.messageService.add({ severity: 'success', summary: 'Acción Éxitosa', detail: msg as string });
-      this.productForm.reset();
-      this.isCreate = true;
-      this.isVisibleForm = false;
-      this.selectedProducts = [];
-      this.showProductTable();
-    });
+      .then(msg => {
+        this.messageService.add({ severity: 'success', summary: 'Acción Éxitosa', detail: msg as string });
+        this.isCreate = true;
+        this.isVisibleForm = false;
+        this.selectedProducts = [];
+      });
   }
 
 }

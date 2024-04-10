@@ -41,7 +41,7 @@
       <div class="col-4"><strong>Cantidad:</strong></div>
       <div class="col-4"><strong>Precio Unitario:</strong></div>
     </section>
-    <section class="grid" *ngFor="let producto of factura">
+    <section class="grid" *ngFor="let producto of factura; trackBy: trackByProductBill">
       <div class="col-4">{{ producto.nameProduct }}</div>
       <div class="col-4">{{ producto.amountProduct }}</div>
       <div class="col-4">{{ producto.priceProduct }}</div>

@@ -34,7 +34,11 @@ export class ProductService {
   }
 
   postCreateRegister(addProduct: Producto): Promise<unknown> {
-    addProduct.id = this.products.length + 1;
+    let lastElement = 0;
+    if (this.products.length > 0) {
+      lastElement = this.products.length - 1;
+      addProduct.id = this.products[lastElement]?.id + 1;
+    } else addProduct.id = lastElement;
     this.products.push(addProduct);
     return Promise.resolve('Se agrego el producto al inventario');
   }
@@ -47,9 +51,12 @@ export class ProductService {
 
   postDeleteRegister(id: number[]): Promise<unknown> {
     let index = 0;
+    let indexBill = 0;
     id.forEach(idSearch => {
       index = this.products.findIndex(produ => produ.id === idSearch)
+      indexBill = this.bill.findIndex(produ => produ.id === idSearch)
       this.products.splice(index, 1);
+      this.bill.splice(indexBill, 1);
     })
     return Promise.resolve('Se eliminó el producto en el inventario');
   }
