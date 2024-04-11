@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.showProductTable();
     /*
     TODO: este método solo esta de prueba, no hace referencia a
-    ninguna funcionalidad de la shop.
+    ninguna funcionalidad de la tienda.
     */
     this.testConnectionApiFakeUsinGitHubPages();
   }
@@ -152,7 +152,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   testConnectionApiFakeUsinGitHubPages(): void {
     this.stockHttp.getTestApiFake()
-    .subscribe(res => console.log('response a fake githubpage: ', JSON.stringify(res, null, 2)));
+    .subscribe(res => console.log('response a fake githubpage: \n', JSON.stringify(res, null, 2)));
   }
 
 }
