@@ -57,8 +57,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.productForm = this.fb.group({
       id: [0],
       [name]: ['', Validators.required],
-      [price]: [0, Validators.required],
-      [amount]: [0, Validators.required],
+      [price]: [null, Validators.required],
+      [amount]: [null, Validators.required],
       [description]: [''],
     });
 
