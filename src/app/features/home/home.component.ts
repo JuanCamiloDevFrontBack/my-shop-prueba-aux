@@ -31,6 +31,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.initVariables();
     this.showProductTable();
+    /*
+    TODO: este método solo esta de prueba, no hace referencia a
+    ninguna funcionalidad de la shop.
+    */
+    this.testConnectionApiFakeUsinGitHubPages();
   }
 
   ngOnDestroy(): void {
@@ -143,6 +148,11 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.isVisibleForm = false;
         this.selectedProducts = [];
       });
+  }
+
+  testConnectionApiFakeUsinGitHubPages(): void {
+    this.stockHttp.getTestApiFake()
+    .subscribe(res => console.log('response a fake githubpage: ', JSON.stringify(res, null, 2)));
   }
 
 }

@@ -1,17 +1,22 @@
-// import { HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { BillF, Producto } from '../interfaces/producto';
 import { ProductService } from './product.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpApiService {
 
-  // private readonly http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
   private readonly httpFake = inject(ProductService);
 
   constructor() { }
+
+  getTestApiFake(): Observable<unknown> {
+    return this.http.get('https://juancamilotest.github.io/test-deploy-json-fake/db.json');
+  }
 
   getStockProductHttp(): Promise<unknown> {
     // this.http.get('url-api/endpoint');
