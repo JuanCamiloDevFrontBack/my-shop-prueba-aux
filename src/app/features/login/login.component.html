@@ -26,7 +26,7 @@
   
           <section class="grid">
             <div class="col-6">
-              <button pButton type="submit" label="Iniciar sesión" class="w-12" [disabled]="loginForm.invalid"></button>
+              <button pButton type="submit" label="{{'login.btns.label-login' | translate}}" class="w-12" [disabled]="loginForm.invalid"></button>
             </div>
   
             <div class="col-6 container-btn-google">
@@ -36,11 +36,11 @@
                   <img class="img-google" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy"
                     alt="google logo">
                 </div>
-                <span class="msg-btn-google">Sign in with Google</span>
+                <span class="msg-btn-google">{{'login.btns.label-google' | translate}}</span>
               </button>
             </div>
             <div class="col-12 flex align-items-center justify-content-center">
-              <a routerLink="/sign-up">¿No tienes cuenta? Regístrate aquí</a>
+              <a routerLink="/sign-up">{{'login.link-sign-up' | translate}}</a>
             </div>
           </section>
         </form>

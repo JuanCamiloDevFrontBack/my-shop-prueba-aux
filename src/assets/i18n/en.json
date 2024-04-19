@@ -4,17 +4,19 @@
         "title-sign-up": "Sign up",
         "email": "Email",
         "pass": "Password",
+        "confirm-pass": "Confirm Password",
         "link-sign-up": "You do not have an account? Sign up here",
         "btns": {
             "label-login": "Login",
-            "label-google": "Sign in with Google"
+            "label-sign-up": "Sign up",
+            "label-google": "Sign in with Google",
+            "label-cancel": "Cancel"
         }
     },
     "msg-errors": {
         "login": {
             "email": "The field is empty or the value entered is invalid.",
             "pass": "The field is empty or the value entered is invalid."
-        },
-        "sign-up": {}
+        }
     }
 }

@@ -1,47 +1,47 @@
 <p-card [style]="{'border': '3px solid grey'}">
     <section class="grid flex justify-content-center" [style.min-height]="'80vh'">
       <div class="col-12 flex align-items-center justify-content-center">
-        <h2>Registro</h2>
+        <h2>{{'login.title-sign-up' | translate}}</h2>
       </div>
       <div class="col-10">
         <form [formGroup]="registerForm" (ngSubmit)="signUp()">
           <div class="field">
-            <label for="username">Correo electrónico</label>
+            <label for="username">{{'login.email' | translate}}</label>
             <div class="col aling-inputs-form">
               <input pInputText class="container-inputs" formControlName="{{inputs.email}}" label="Correo electrónico" />
             </div>
             <div class="error-message" *ngIf="registerForm.get(inputs.email)?.errors !== null">
-              El campo esta vacío o el valor ingresado es inválido.
+              {{'msg-errors.login.email' | translate}}
             </div>
           </div>
           <div class="grid">
             <div class="col-6 field">
-              <label for="password">Contraseña</label>
+              <label for="password">{{'login.pass' | translate}}</label>
               <div class="col aling-inputs-form">
-                <input pInputText class="container-inputs" formControlName="{{inputs.pass}}" label="Contraseña"
+                <input pInputText class="container-inputs" formControlName="{{inputs.pass}}" label="'login.pass' | translate"
                   type="password" />
               </div>
               <div class="error-message" *ngIf="registerForm.get(inputs.pass)?.errors !== null">
-                El campo esta vacío o el valor ingresado es inválido.
+                {{'msg-errors.login.pass' | translate}}
               </div>
             </div>
             <div class="col-6 field">
-              <label for="password">Confirmar Contraseña</label>
+              <label for="password">{{'login.confirm-pass' | translate}}</label>
               <div class="col aling-inputs-form">
                 <input pInputText class="container-inputs" formControlName="{{inputs.confirmPass}}"
-                  label="Confirmar Contraseña" type="password" />
+                  label="'login.confirm-pass' | translate" type="password" />
               </div>
               <div class="error-message" *ngIf="registerForm.get(inputs.confirmPass)?.errors !== null">
-                El campo esta vacío o el valor ingresado es inválido.
+                {{'msg-errors.login.pass' | translate}}
               </div>
             </div>
           </div>
           <section class="grid">
             <div class="col-6">
-              <button pButton type="button" label="Cancelar" class="w-12 p-button-secondary" (click)="back()"></button>
+              <button pButton type="button" label="{{'login.btns.label-cancel' | translate}}" class="w-12 p-button-secondary" (click)="back()"></button>
             </div>
             <div class="col-6">
-              <button pButton type="submit" label="Registrarse" class="w-12" [disabled]="registerForm.invalid"></button>
+              <button pButton type="submit" label="{{'login.btns.label-sign-up' | translate}}" class="w-12" [disabled]="registerForm.invalid"></button>
             </div>
           </section>
         </form>

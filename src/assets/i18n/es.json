@@ -4,17 +4,19 @@
         "title-sign-up": "Registro",
         "email": "Correo electrónico",
         "pass": "Contraseña",
+        "confirm-pass": "Confirmar Contraseña",
         "link-sign-up": "¿No tienes cuenta? Regístrate aquí",
         "btns": {
             "label-login": "Iniciar sesión",
-            "label-google": "Iniciar con Google"
+            "label-sign-up": "Registrarse",
+            "label-google": "Iniciar con Google",
+            "label-cancel": "Cancelar"
         }
     },
     "msg-errors": {
         "login": {
             "email": "El campo esta vacío o el valor ingresado es inválido.",
             "pass": "El campo esta vacío o el valor ingresado es inválido."
-        },
-        "sign-up": {}
+        }
     }
 }
