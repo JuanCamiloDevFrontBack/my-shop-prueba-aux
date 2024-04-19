@@ -1,3 +1,20 @@
 {
-    "login": "Log in"
+    "login": {
+        "title": "Log in",
+        "title-sign-up": "Sign up",
+        "email": "Email",
+        "pass": "Password",
+        "link-sign-up": "You do not have an account? Sign up here",
+        "btns": {
+            "label-login": "Login",
+            "label-google": "Sign in with Google"
+        }
+    },
+    "msg-errors": {
+        "login": {
+            "email": "The field is empty or the value entered is invalid.",
+            "pass": "The field is empty or the value entered is invalid."
+        },
+        "sign-up": {}
+    }
 }

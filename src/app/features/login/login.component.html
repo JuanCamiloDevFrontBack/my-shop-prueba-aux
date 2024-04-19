@@ -1,26 +1,26 @@
 <p-card [style]="{'border': '3px solid grey'}">
     <section class="grid flex justify-content-center" [style.min-height]="'80vh'">
       <div class="col-12 flex align-items-center justify-content-center">
-        <h2>{{'login' | translate}}</h2>
+        <h2>{{'login.title' | translate}}</h2>
       </div>
       <div class="col-10">
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div class="field">
-            <label for="username">Correo electrónico</label>
+            <label for="username">{{'login.email' | translate}}</label>
             <div class="col aling-inputs-form">
-              <input pInputText class="container-inputs" formControlName="{{inputs.email}}" label="Correo electrónico" />
+              <input pInputText class="container-inputs" formControlName="{{inputs.email}}" label="'login.email' | translate" />
             </div>
             <div class="error-message" *ngIf="loginForm.get(inputs.email)?.errors !== null">
-              El campo esta vacío o el valor ingresado es inválido.
+              {{'msg-errors.login.email' | translate}}
             </div>
           </div>
           <div class="field">
-            <label for="password">Contraseña</label>
+            <label for="password">{{'login.pass' | translate}}</label>
             <div class="col aling-inputs-form">
-              <input pInputText class="container-inputs" formControlName="{{inputs.pass}}" label="Contraseña" type="password" />
+              <input pInputText class="container-inputs" formControlName="{{inputs.pass}}" label="'login.pass' | translate" type="password" />
             </div>
             <div class="error-message" *ngIf="loginForm.get(inputs.pass)?.errors !== null">
-              El campo esta vacío o el valor ingresado es inválido.
+              {{'msg-errors.login.pass' | translate}}
             </div>
           </div>
   
