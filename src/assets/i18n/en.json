@@ -13,6 +13,21 @@
             "label-cancel": "Cancel"
         }
     },
+    "inventory": {
+        "title": "Inventory Management",
+        "table": {
+            "btns": {
+                "edit": "Edit",
+                "delete": "Delete"
+            },
+            "col-name": "Name",
+            "col-price": "Price",
+            "col-quantity-stock": "Quantity in Stock",
+            "col-description": "Description",
+            "col-stock-low": "Stock very Low",
+            "msg-empty-default": "There are no records."
+        }
+    },
     "msg-errors": {
         "login": {
             "email": "The field is empty or the value entered is invalid.",

@@ -13,6 +13,21 @@
             "label-cancel": "Cancelar"
         }
     },
+    "inventory": {
+        "title": "Gestión de Inventario",
+        "table": {
+            "btns": {
+                "edit": "Editar",
+                "delete": "Eliminar"
+            },
+            "col-name": "Nombre",
+            "col-price": "Precio",
+            "col-quantity-stock": "Cantidad en Stock",
+            "col-description": "Descripción",
+            "col-stock-low": "Stock muy Bajó",
+            "msg-empty-default": "No existen registros."
+        }
+    },
     "msg-errors": {
         "login": {
             "email": "El campo esta vacío o el valor ingresado es inválido.",

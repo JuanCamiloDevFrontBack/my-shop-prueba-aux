@@ -2,7 +2,7 @@
 
     <section class="grid flex justify-content-center">
       <div class="col-12 flex justify-content-center" style="margin: 0% 0% 0%; padding: 0%;">
-        <h2>Gestión de Inventario</h2>
+        <h2>{{ 'inventory.title' | translate }}</h2>
       </div>
       <div class="col-12 flex justify-content-center" style="margin: 0% 0% 0%; padding: 0%;">
         <div class="col-10 text-right">
@@ -78,12 +78,12 @@
     
     <section *ngIf="selectedProducts.length > 0" class="flex p-justify-end">
       <div class="col-11 text-right">
-        <button pButton type="button" label="Editar" class="p-button-text p-button-secondary" [disabled]="selectedProducts.length > 1"
+        <button pButton type="button" label="{{'inventory.table.btns.edit' | translate}}" class="p-button-text p-button-secondary" [disabled]="selectedProducts.length > 1"
           (click)="editProducts()"></button>
       </div>
   
       <div class="col-1 text-right">
-        <button pButton type="button" label="Eliminar" class="p-button-text p-button-danger"
+        <button pButton type="button" label="{{'inventory.table.btns.delete' | translate}}" class="p-button-text p-button-danger"
           (click)="deleteProducts()"></button>
       </div>
     </section>
@@ -93,11 +93,11 @@
         <ng-template pTemplate="header">
           <tr>
             <th></th>
-            <th class="text-center">Nombre</th>
-            <th class="text-center">Precio</th>
-            <th class="text-center">Cantidad en Stock</th>
-            <th class="text-center">Descripción</th>
-            <th class="text-center">Stock muy Bajó</th>
+            <th class="text-center">{{'inventory.table.col-name' | translate}}</th>
+            <th class="text-center">{{'inventory.table.col-price' | translate}}</th>
+            <th class="text-center">{{'inventory.table.col-quantity-stock' | translate}}</th>
+            <th class="text-center">{{'inventory.table.col-description' | translate}}</th>
+            <th class="text-center">{{'inventory.table.col-stock-low' | translate}}</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-producto>
@@ -114,7 +114,7 @@
         </ng-template>
         <ng-template pTemplate="emptymessage">
           <tr>
-            <td colspan="6" class="text-center">No hay registros.</td>
+            <td colspan="6" class="text-center">{{'inventory.table.msg-empty-default' | translate}}</td>
           </tr>
         </ng-template>
       </p-table>
