@@ -4,6 +4,7 @@
 
 Este repositorio contiene un proyecto práctico sobre Angular V.16, que permite efectuar acciones de tipo `CRUD`
 sobre la información a manipular, el cual se divide en 3 ramas `main`, `develop` y `deployment`.
+
 Nota: el proyecto soporta multilenguaje(I18N) en los idiomas de español e inglés.
 
 [//]: <> (Adicionalmente el proyecto cuenta con 2 ambientes, el de `Producción` y `Desarrollo`.)
