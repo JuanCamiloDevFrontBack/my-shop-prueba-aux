@@ -34,6 +34,8 @@ Se utilizan las siguientes herramientas:
 * Primeicons V.7.0.0
 * Firebase V.10.10.0
 * Angular/fire V.16.0.0
+* NgxTranslateCore V.15.0.0
+* NgxTranslateHttpLoader V.8.0.0
 
 ## Ramas
 
