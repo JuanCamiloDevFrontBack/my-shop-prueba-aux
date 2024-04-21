@@ -1,6 +1,7 @@
 {
     "login": {
         "title": "Iniciar Sesión",
+        "close": "Cerrar Sesión",
         "title-sign-up": "Registro",
         "email": "Correo electrónico",
         "pass": "Contraseña",
