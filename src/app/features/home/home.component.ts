@@ -36,6 +36,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     ninguna funcionalidad de la tienda.
     */
     this.testConnectionApiFakeUsinGitHubPages();
+    this.testConnectionApiUsinRender();
   }
 
   ngOnDestroy(): void {
@@ -153,6 +154,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   testConnectionApiFakeUsinGitHubPages(): void {
     this.stockHttp.getTestApiFake()
     .subscribe(res => console.log('response a fake githubpage: \n', JSON.stringify(res, null, 2)));
+  }
+  
+  testConnectionApiUsinRender(): void {
+    this.stockHttp.getTestApi()
+    .subscribe(res => console.log('\n\n\nresponse api render: \n', JSON.stringify(res, null, 2)));
   }
 
 }
