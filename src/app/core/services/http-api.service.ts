@@ -14,14 +14,6 @@ export class HttpApiService {
 
   constructor() { }
 
-  getTestApiFake(): Observable<unknown> {
-    return this.http.get('https://juancamilotest.github.io/test-deploy-json-fake/db.json');
-  }
-
-  getTestApi(): Observable<unknown> {
-    return this.http.get('https://app-general-test.onrender.com/senorfullstack/saga-transformers/all-record');
-  }
-
   getStockProductHttp(): Promise<unknown> {
     // this.http.get('url-api/endpoint');
     return this.httpFake.getRegistersHttpFake();
