@@ -16,8 +16,8 @@
     "inventory": {
         "title": "Gestión de Inventario",
         "form": {
-            "name": "Producto",
-            "price": "Cantidad",
+            "name": "Nombre del Producto",
+            "price": "Precio Unitario",
             "amount": "Cantidad en Stock",
             "description": "Descripción"
         },
@@ -28,6 +28,10 @@
             "col-description": "Descripción",
             "col-stock-low": "Stock muy Bajó",
             "msg-empty-default": "No existen registros."
+        },
+        "btns": {
+            "label-create": "Crear Producto",
+            "label-sell": "Vender Productos"
         }
     },
     "sales-product": {
@@ -43,6 +47,9 @@
         "login": {
             "email": "El campo esta vacío o el valor ingresado es inválido.",
             "pass": "El campo esta vacío o el valor ingresado es inválido."
+        },
+        "inventory": {
+            "input-number": "Ingresar un número valido y que sea mayor a cero."
         },
         "sales-product": {
             "amount": "La cantidad ingresada del producto es invalida, excede el stock que se tiene almacenado."
@@ -87,7 +94,9 @@
     "btns": {
         "search": "Consultar",
         "add": "Agregar",
+        "save": "Guardar",
         "cancel": "Cancelar",
+        "clear": "Limpiar",
         "edit": "Editar",
         "delete": "Eliminar"
     }

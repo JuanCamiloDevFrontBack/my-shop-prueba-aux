@@ -6,44 +6,44 @@
       </div>
       <div class="col-12 flex justify-content-center" style="margin: 0% 0% 0%; padding: 0%;">
         <div class="col-10 text-right">
-          <button pButton type="button" label="Crear Producto" class="p-button-outlined p-button-success"
+          <button pButton type="button" label="{{ 'inventory.btns.label-create' | translate }}" class="p-button-outlined p-button-success"
             [disabled]="isVisibleForm" (click)="showForm()"></button>
         </div>
         <div class="col-2 text-center">
-          <button pButton type="button" label="Vender Producto" class="p-button-outlined p-button-warning"
+          <button pButton type="button" label="{{ 'inventory.btns.label-sell' | translate }}" class="p-button-outlined p-button-warning"
             (click)="saleProduct()"></button>
         </div>
       </div>
       <div *ngIf="isVisibleForm" class="col-10">
         <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
           <div class="field">
-            <label for="nameproduct">Nombre del Producto</label>
+            <label for="nameproduct">{{'inventory.form.name' | translate}}</label>
             <div class="col-12 aling-inputs-form">
               <input pInputText class="w-12" label="Nombre del Producto" formControlName="{{inputs.name}}" />
             </div>
           </div>
           <div class="field flex align-items-center p-justify-center">
             <div class="col-6 p-0">
-              <label for="price">Precio Unitario</label>
+              <label for="price">{{'inventory.form.price' | translate}}</label>
               <div class="col aling-inputs-form">
                 <input pInputText class="w-12" label="Precio" formControlName="{{inputs.price}}" />
               </div>
               <div class="error-message" *ngIf="productForm.get(inputs.price)?.errors !== null">
-                  Ingresar un número valido y que sea mayor a cero.
+                {{'msg-errors.inventory.input-number' | translate}}
                 </div>
             </div>
             <div class="col-6 p-0">
-              <label for="amount">Cantidad en Stock</label>
+              <label for="amount">{{'inventory.form.amount' | translate}}</label>
               <div class="col aling-inputs-form">
                 <input pInputText class="w-12" label="Cantidad" formControlName="{{inputs.amount}}" />
               </div>
               <div class="error-message" *ngIf="productForm.get(inputs.amount)?.errors !== null">
-                Ingresar un número valido y que sea mayor a cero.
+                {{'msg-errors.inventory.input-number' | translate}}
               </div>
             </div>
           </div>
           <div class="field">
-            <label for="description">Descripción</label>
+            <label for="description">{{'inventory.form.description' | translate}}</label>
             <div class="col aling-inputs-form">
               <textarea pInputTextarea rows="5" id="descripcion" class="w-12"
                 formControlName="{{inputs.description}}"></textarea>
@@ -52,22 +52,22 @@
   
           <section class="grid">
             <div class="col-6">
-              <button pButton type="button" label="Limpiar"
+              <button pButton type="button" label="{{'btns.clear' | translate}}"
                 class="flex items-center justify-center w-full p-button-secondary" (click)="this.productForm.reset()"></button>
             </div>
   
             <div class="col-6">
               <ng-container *ngIf="isCreate else btnEdit">
-                <button pButton type="submit" label="Guardar" class="w-12" [disabled]="productForm.invalid"></button>
+                <button pButton type="submit" label="{{'btns.save' | translate}}" class="w-12" [disabled]="productForm.invalid"></button>
               </ng-container>
   
               <ng-template #btnEdit>
-                <button pButton type="button" label="Guardar" class="w-12" [disabled]="productForm.invalid" (click)="modifyProduct()"></button>
+                <button pButton type="button" label="{{'btns.save' | translate}}" class="w-12" [disabled]="productForm.invalid" (click)="modifyProduct()"></button>
               </ng-template>
             </div>
   
             <div class="col-12">
-              <button pButton type="button" label="Cancelar" class="w-12 p-button-danger" (click)="this.isVisibleForm = false"></button>
+              <button pButton type="button" label="{{'btns.cancel' | translate}}" class="w-12 p-button-danger" (click)="this.isVisibleForm = false"></button>
             </div>
           </section>
         </form>
@@ -78,12 +78,12 @@
     
     <section *ngIf="selectedProducts.length > 0" class="flex p-justify-end">
       <div class="col-11 text-right">
-        <button pButton type="button" label="{{'inventory.table.btns.edit' | translate}}" class="p-button-text p-button-secondary" [disabled]="selectedProducts.length > 1"
+        <button pButton type="button" label="{{'btns.edit' | translate}}" class="p-button-text p-button-secondary" [disabled]="selectedProducts.length > 1"
           (click)="editProducts()"></button>
       </div>
   
       <div class="col-1 text-right">
-        <button pButton type="button" label="{{'inventory.table.btns.delete' | translate}}" class="p-button-text p-button-danger"
+        <button pButton type="button" label="{{'btns.delete' | translate}}" class="p-button-text p-button-danger"
           (click)="deleteProducts()"></button>
       </div>
     </section>
