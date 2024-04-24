@@ -40,13 +40,13 @@ export class ProductService {
       addProduct.id = this.products[lastElement]?.id + 1;
     } else addProduct.id = lastElement;
     this.products.push(addProduct);
-    return Promise.resolve('Se agrego el producto al inventario');
+    return Promise.resolve('alerts.inventory.success.msg-1');
   }
 
   postEditRegister(editProduct: Producto): Promise<unknown> {
     const index = this.products.findIndex(value => value.id === editProduct.id);
     this.products[index] = editProduct;
-    return Promise.resolve('Se edito el producto en el inventario');
+    return Promise.resolve('alerts.inventory.success.msg-2');
   }
 
   postDeleteRegister(id: number[]): Promise<unknown> {
@@ -58,7 +58,7 @@ export class ProductService {
       this.products.splice(index, 1);
       this.bill.splice(indexBill, 1);
     })
-    return Promise.resolve('Se eliminó el producto en el inventario');
+    return Promise.resolve('alerts.inventory.success.msg-3');
   }
 
   postAddRegisterBill(addProduct: BillF): Promise<unknown> {
@@ -69,7 +69,7 @@ export class ProductService {
     this.bill.push(nameProduct);
     index = this.products.findIndex(produ => produ.id === nameProduct.id)
     this.products[index][ProductE.amount] -= Number(amountProduct);
-    return Promise.resolve('Se agregó el producto en la factura');
+    return Promise.resolve('alerts.bill.success.msg-1');
   }
 
 }

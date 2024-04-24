@@ -1,110 +1,115 @@
 {
-    "": "inlges",
     "login": {
-      "title": "Log in",
-      "close": "Cerrar Sesión",
-      "title-sign-up": "Sign up",
-      "email": "Email",
-      "pass": "Password",
-      "confirm-pass": "Confirm Password",
-      "link-sign-up": "You do not have an account? Sign up here",
-      "btns": {
-        "label-login": "Login",
-        "label-sign-up": "Sign up",
-        "label-google": "Sign in with Google"
-      }
+        "title": "Log in",
+        "close": "Sign off",
+        "title-sign-up": "Sign up",
+        "email": "Email",
+        "pass": "Password",
+        "confirm-pass": "Confirm Password",
+        "link-sign-up": "You do not have an account? Sign up here",
+        "btns": {
+            "label-login": "Login",
+            "label-sign-up": "Sign up",
+            "label-google": "Sign in with Google"
+        }
     },
     "inventory": {
-      "title": "Inventory Management!!!",
-      "form": {
-        "name": "Product",
-        "price": "Amount",
-        "amount": "Quantity in Stock",
-        "description": "Description"
-      },
-      "table": {
-        "col-name": "Name",
-        "col-price": "Price",
-        "col-quantity-stock": "Quantity in Stock",
-        "col-description": "Description",
-        "col-stock-low": "Stock very Low",
-        "msg-empty-default": "There are no records."
-      },
-      "btns": {
-        "label-create": "Create Product",
-        "label-sell": "Sell P​roducts"
-      }
+        "title": "Inventory Management",
+        "form": {
+            "name": "Product",
+            "price": "Amount",
+            "amount": "Quantity in Stock",
+            "description": "Description"
+        },
+        "table": {
+            "col-name": "Name",
+            "col-price": "Price",
+            "col-quantity-stock": "Quantity in Stock",
+            "col-description": "Description",
+            "col-stock-low": "Stock very Low",
+            "msg-empty-default": "There are no records."
+        },
+        "btns": {
+            "label-create": "Create Product",
+            "label-sell": "Sell P​roducts"
+        }
     },
     "sales-product": {
-      "title": "Sale of Products",
-      "title-bill": "Bill",
-      "price": "Unit Price",
-      "form": {
-        "product": "Product",
-        "amount": "Quantity"
-      }
+        "title": "Sale of Products",
+        "title-bill": "Bill",
+        "price": "Unit Price",
+        "form": {
+            "product": "Product",
+            "amount": "Quantity"
+        }
     },
     "msg-errors": {
-      "login": {
-        "email": "The field is empty or the value entered is invalid.",
-        "pass": "The field is empty or the value entered is invalid."
-      },
-      "inventory": {
-        "input-number": "Enter a valid number that is greater than zero."
-      },
-      "sales-product": {
-        "amount": "The entered quantity of the product is invalid, it exceeds the stock that is stored."
-      }
+        "login": {
+            "email": "The field is empty or the value entered is invalid.",
+            "pass": "The field is empty or the value entered is invalid."
+        },
+        "inventory": {
+            "input-number": "Enter a valid number that is greater than zero."
+        },
+        "sales-product": {
+            "amount": "The entered quantity of the product is invalid, it exceeds the stock that is stored."
+        }
     },
     "alerts": {
-      "ok": "Successful Action",
-      "info": "Note",
-      "warn": "Warning",
-      "err": "Error",
-      "login": {
-        "success": {
-          "session": "Successful Login",
-          "welcome": "Welcome to System"
+        "ok": "Successful Action",
+        "info": "Note",
+        "warn": "Warning",
+        "err": "Error",
+        "login": {
+            "success": {
+                "session": "Successful Login",
+                "welcome": "Welcome to System"
+            },
+            "warning": {},
+            "error": {
+                "session": "Login Error",
+                "msg-err": "An error occurred during login"
+            }
         },
-        "warning": {
+        "sign-up": {
+            "success": {
+                "session": "Successful Sign Up",
+                "welcome": "User sign up was successful"
+            },
+            "warning": {},
+            "error": {
+                "session": "Sign up Error",
+                "msg-err": "An error occurred in user sign up"
+            }
         },
-        "error": {
-          "session": "Login Error",
-          "msg-err": "An error occurred during login"
+        "inventory": {
+            "success": {
+                "msg-1": "The product was added to inventory.",
+                "msg-2": "The product was edited in the inventory.",
+                "msg-3": "Product was removed from inventory."
+            },
+            "info": {
+                "msg-1": "Register at least one product in the inventory to be able to make the sale."
+            },
+            "warning": {},
+            "error": {}
+        },
+        "bill": {
+            "success": {
+                "msg-1": "The product was added to the bill."
+            },
+            "info": {},
+            "warning": {},
+            "error": {}
         }
-      },
-      "sign-up": {
-        "success": {
-          "session": "Successful Sign Up",
-          "welcome": "User sign up was successful"
-        },
-        "warning": {
-        },
-        "error": {
-          "session": "Sign up Error",
-          "msg-err": "An error occurred in user sign up"
-        }
-      },
-      "inventory": {
-        "success": {
-        },
-        "info": {
-          "msg-1": "Register at least one product in the inventory to be able to make the sale."
-        },
-        "warning": {
-        },
-        "error": {
-        }
-      }
     },
     "btns": {
-      "search": "Search",
-      "add": "Add",
-      "save": "Save",
-      "cancel": "Cancel",
-      "clear": "Clean",
-      "edit": "Edit",
-      "delete": "Delete"
+        "search": "Search",
+        "add": "Add",
+        "save": "Save",
+        "cancel": "Cancel",
+        "clear": "Clean",
+        "edit": "Edit",
+        "delete": "Delete"
     }
-  }
-  
+}

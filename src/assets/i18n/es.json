@@ -83,10 +83,22 @@
             }
         },
         "inventory": {
-            "success": {},
+            "success": {
+                "msg-1": "Se agrego el producto al inventario.",
+                "msg-2": "Se edito el producto en el inventario.",
+                "msg-3": "Se eliminó el producto en el inventario."
+            },
             "info": {
                 "msg-1": "Registre en el inventario al menos un producto para poder efectuar la venta."
             },
+            "warning": {},
+            "error": {}
+        },
+        "bill": {
+            "success": {
+                "msg-1": "Se agregó el producto en la factura."
+            },
+            "info": {},
             "warning": {},
             "error": {}
         }

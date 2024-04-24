@@ -112,7 +112,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   editProducts(): void {
     const { name, price, amount, description } = ProductE;
     const [regisEdit] = this.selectedProducts;
-
+     
     this.isCreate = false;
     this.showForm();
     setTimeout(() => {
