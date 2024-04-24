@@ -10,17 +10,18 @@
         "btns": {
             "label-login": "Login",
             "label-sign-up": "Sign up",
-            "label-google": "Sign in with Google",
-            "label-cancel": "Cancel"
+            "label-google": "Sign in with Google"
         }
     },
     "inventory": {
         "title": "Inventory Management",
+        "form": {
+            "name": "Product",
+            "price": "Amount",
+            "amount": "Quantity in Stock",
+            "description": "Description"
+        },
         "table": {
-            "btns": {
-                "edit": "Edit",
-                "delete": "Delete"
-            },
             "col-name": "Name",
             "col-price": "Price",
             "col-quantity-stock": "Quantity in Stock",
@@ -29,46 +30,65 @@
             "msg-empty-default": "There are no records."
         }
     },
+    "sales-product": {
+        "title": "Venta de Productos",
+        "title-bill": "Bill",
+        "price": "Unit Price",
+        "form": {
+            "product": "Product",
+            "amount": "Quantity"
+        }
+    },
     "msg-errors": {
         "login": {
             "email": "The field is empty or the value entered is invalid.",
             "pass": "The field is empty or the value entered is invalid."
+        },
+        "sales-product": {
+            "amount": "The entered quantity of the product is invalid, it exceeds the stock that is stored."
         }
     },
     "alerts": {
-        "ok": "Acción Éxitosa",
+        "ok": "Successful Action",
         "info": "Note",
         "warn": "Warning",
         "err": "Error",
         "login": {
             "success": {
-                "session": "Inicio de Sesión Éxitoso",
-                "welcome": "Bienvenido al sistema"
+                "session": "Successful Login",
+                "welcome": "Welcome to System"
             },
             "warning": {},
             "error": {
-                "session": "Error de Inicio",
-                "msg-err": "Ocurrio un error en el inicio de sesión"
+                "session": "Login Error",
+                "msg-err": "An error occurred during login"
             }
         },
         "sign-up": {
             "success": {
-                "session": "Registro Éxitoso",
-                "welcome": "El registro de usurio fue éxitoso"
+                "session": "Successful Sign Up",
+                "welcome": "User sign up was successful"
             },
             "warning": {},
             "error": {
-                "session": "Error al Registrase",
-                "msg-err": "Ocurrio un error en el registro de usuario"
+                "session": "Sign up Error",
+                "msg-err": "An error occurred in user sign up"
             }
         },
         "inventory": {
             "success": {},
             "info": {
-                "msg-1": "Registre en el inventario al menos un producto para poder efectuar la venta."
+                "msg-1": "Register at least one product in the inventory to be able to make the sale."
             },
             "warning": {},
             "error": {}
         }
+    },
+    "btns": {
+        "search": "Search",
+        "add": "Add",
+        "cancel": "Cancel",
+        "edit": "Edit",
+        "delete": "Delete"
     }
 }

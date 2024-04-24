@@ -22,10 +22,6 @@
             "description": "Descripción"
         },
         "table": {
-            "btns": {
-                "edit": "Editar",
-                "delete": "Eliminar"
-            },
             "col-name": "Nombre",
             "col-price": "Precio",
             "col-quantity-stock": "Cantidad en Stock",
