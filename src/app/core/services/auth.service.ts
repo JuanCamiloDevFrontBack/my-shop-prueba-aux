@@ -3,7 +3,7 @@ import { GoogleAuthProvider } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { Login } from '../interfaces/login';
-import { MessageService } from 'primeng/api';
+import { AlertsMsgService } from './alerts-msg.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,7 @@ export class AuthServiceService {
   private readonly firebaseAuthenticationService = inject(AngularFireAuth);
   private readonly router = inject(Router);
   private readonly ngZone = inject(NgZone)
-  private readonly messageService = inject(MessageService);
+  private readonly alerts = inject(AlertsMsgService);
 
   constructor() {
     this.firebaseAuthenticationService.authState.subscribe(user => {
@@ -42,10 +42,10 @@ export class AuthServiceService {
       .then(userCredential => {
         this.userData = userCredential.user
         this.observeUserState(1)
-        this.messageService.add({ severity: 'success', summary: 'Inicio de Sesión Éxitoso', detail: 'Bienvenido al sistema' });
+        this.alerts.success({ summary: 'alerts.login.success.session', msg: 'alerts.login.success.welcome' });
       })
       .catch(error => {
-        this.messageService.add({ severity: 'error', summary: 'Error de Inicio', detail: error.message });
+        this.alerts.error({ summary: 'alerts.login.error.session', msg: 'alerts.login.error.msg-err' });
       })
   }
 
@@ -53,10 +53,10 @@ export class AuthServiceService {
     return this.firebaseAuthenticationService.signInWithPopup(new GoogleAuthProvider())
       .then(() => {
         this.observeUserState(2);
-        this.messageService.add({ severity: 'success', summary: 'Inicio de Sesión Éxitoso', detail: 'Inicio de sesión cpon Google fue éxitoso' });
+        this.alerts.success({ summary: 'alerts.login.success.session', msg: 'alerts.login.success.welcome' });
       })
       .catch((error: Error) => {
-        this.messageService.add({ severity: 'error', summary: 'Error de Inicio', detail: error.message });
+        this.alerts.error({ summary: 'alerts.login.error.session', msg: 'alerts.login.error.msg-err' });
       })
   }
 
@@ -65,10 +65,10 @@ export class AuthServiceService {
       .then(userCredential => {
         this.userData = userCredential.user;
         this.observeUserState(3);
-        this.messageService.add({ severity: 'success', summary: 'Registro Éxitoso', detail: 'El registro de usurio fue éxitoso' });
+        this.alerts.success({ summary: 'alerts.sign-up.success.session', msg: 'alerts.sign-up.success.welcome' });
       })
       .catch(error => {
-        this.messageService.add({ severity: 'error', summary: 'Error al Registrase', detail: error.message });
+        this.alerts.error({ summary: 'alerts.sign-up.error.session', msg: 'alerts.sign-up.error.msg-err' });
       })
   }
 

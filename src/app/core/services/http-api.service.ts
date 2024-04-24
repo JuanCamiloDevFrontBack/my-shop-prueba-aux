@@ -1,15 +1,15 @@
-import { HttpClient } from '@angular/common/http';
+// import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { BillF, Producto } from '../interfaces/producto';
 import { ProductService } from './product.service';
-import { Observable } from 'rxjs';
+// import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpApiService {
 
-  private readonly http = inject(HttpClient);
+  // private readonly http = inject(HttpClient);
   private readonly httpFake = inject(ProductService);
 
   constructor() { }

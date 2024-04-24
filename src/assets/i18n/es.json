@@ -34,5 +34,36 @@
             "email": "El campo esta vacío o el valor ingresado es inválido.",
             "pass": "El campo esta vacío o el valor ingresado es inválido."
         }
+    },
+    "alerts": {
+        "ok": "Acción Éxitosa",
+        "err": "",
+        "login": {
+            "success": {
+                "session": "Inicio de Sesión Éxitoso",
+                "welcome": "Bienvenido al sistema"
+            },
+            "warning": {},
+            "error": {
+                "session": "Error de Inicio",
+                "msg-err": "Ocurrio un error en el inicio de sesión"
+            }
+        },
+        "sign-up": {
+            "success": {
+                "session": "Registro Éxitoso",
+                "welcome": "El registro de usurio fue éxitoso"
+            },
+            "warning": {},
+            "error": {
+                "session": "Error al Registrase",
+                "msg-err": "Ocurrio un error en el registro de usuario"
+            }
+        },
+        "inventory": {
+            "success": {},
+            "warning": {},
+            "error": {}
+        }
     }
 }

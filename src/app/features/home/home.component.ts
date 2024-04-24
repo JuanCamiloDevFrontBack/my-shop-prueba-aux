@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Subject, takeUntil } from 'rxjs';
 import { ProductE, Producto } from 'src/app/core/interfaces/producto';
+import { AlertsMsgService } from 'src/app/core/services/alerts-msg.service';
 import { HttpApiService } from 'src/app/core/services/http-api.service';
 
 @Component({
@@ -27,6 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private readonly router = inject(Router);
   private readonly fb = inject(FormBuilder);
   private readonly messageService = inject(MessageService);
+  private readonly alerts = inject(AlertsMsgService);
 
   ngOnInit(): void {
     this.initVariables();
@@ -92,7 +94,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     this.stockHttp.createProductStockHttp(this.productForm.value)
       .then(msg => {
-        this.messageService.add({ severity: 'success', summary: 'Acción Éxitosa', detail: msg as string });
+        this.alerts.success({ summary: '', msg: msg as string });
         this.productForm.reset();
       });
   }

@@ -18,4 +18,10 @@
   <router-outlet (activate)="routeIsActive()"></router-outlet>
 </main>
 
-<footer></footer>
+<footer>
+  <div class="footer">
+    <div *ngIf="isActiveHeader" class="container">
+      <p>&copy; 2024 <a href="https://example.com/">Juan Camilo - Autodidact</a>.</p>
+    </div>
+  </div>
+</footer>
