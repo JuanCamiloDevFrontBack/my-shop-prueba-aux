@@ -37,7 +37,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
     this.registerForm = this.fb.group({
       [LoginE.email]: ['', [Validators.required, Validators.email]],
       [LoginE.pass]: ['', Validators.required],
-      [LoginE.confirmPass]: [''],
+      [LoginE.confirmPass]: [null, Validators.required],
     });
     this.isEqualsInputPassword();
   }
