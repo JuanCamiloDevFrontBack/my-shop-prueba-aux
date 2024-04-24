@@ -1,12 +1,12 @@
 <!-- apruebe en la factura para que decuente -->
 <div class="grid flex justify-content-center">
   <div class="col-12 flex align-items-center justify-content-center">
-    <h2>Venta de Productos</h2>
+    <h2>{{'sales-product.title' | translate}}</h2>
   </div>
   <div class="col-10">
     <form [formGroup]="billForm" (ngSubmit)="agregarProducto()">
       <div class="field">
-        <label for="producto">Producto</label>
+        <label for="producto">{{'sales-product.form.product' | translate}}</label>
         <div class="col aling-inputs-form">
           <p-dropdown class="text-center" [style]="{'width':'100%'}" [options]="productos" [optionLabel]="'nameProduct'"
             formControlName="{{inputs.name}}"></p-dropdown>
@@ -14,32 +14,32 @@
       </div>
 
       <div class="field">
-        <label for="cantidad">Cantidad</label>
+        <label for="cantidad">{{'sales-product.form.amount' | translate}}</label>
         <div class="col aling-inputs-form">
           <input pInputText class="w-12 text-center" label="Cantidad" formControlName="{{inputs.amount}}" />
         </div>
         <div class="error-message" *ngIf="billForm.get(inputs.amount)?.errors !== null">
-          La cantidad ingresda del producto es invalida, excede el stock que se tiene almacenado.
+          {{'msg-errors.sales-product.amount' | translate}}
         </div>
       </div>
 
       <section class="grid">
         <div class="col-6">
-          <button pButton type="button" label="Cancelar" class="w-12 p-button-secondary" (click)="back()"></button>
+          <button pButton type="button" label="{{'btns.cancel' | translate}}" class="w-12 p-button-secondary" (click)="back()"></button>
         </div>
         <div class="col-6">
-          <button pButton type="submit" label="Agregar" class="w-12" [disabled]="billForm.invalid"></button>
+          <button pButton type="submit" label="{{'btns.add' | translate}}" class="w-12" [disabled]="billForm.invalid"></button>
         </div>
       </section>
     </form>
   </div>
 
-  <p-card *ngIf="factura.length > 0" class="w-7 text-center" header="Factura" [style]="{'border': '6px solid gray'}">
+  <p-card *ngIf="factura.length > 0" class="w-7 text-center" header="{{'sales-product.title-bill' | translate}}" [style]="{'border': '6px solid gray'}">
 
     <section class="grid">
-      <div class="col-4"><strong>Producto:</strong></div>
-      <div class="col-4"><strong>Cantidad:</strong></div>
-      <div class="col-4"><strong>Precio Unitario:</strong></div>
+      <div class="col-4"><strong>{{'sales-product.form.product' | translate}}:</strong></div>
+      <div class="col-4"><strong>{{'sales-product.form.amount' | translate}}:</strong></div>
+      <div class="col-4"><strong>{{'sales-product.price' | translate}}:</strong></div>
     </section>
     <section class="grid" *ngFor="let producto of factura; trackBy: trackByProductBill">
       <div class="col-4">{{ producto.nameProduct }}</div>

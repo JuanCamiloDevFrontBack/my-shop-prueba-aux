@@ -7,11 +7,12 @@ import { Router } from '@angular/router';
 import { HttpApiService } from 'src/app/core/services/http-api.service';
 import { ProductService } from 'src/app/core/services/product.service';
 import { Subject, takeUntil } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sale-product',
   standalone: true,
-  imports: [CommonModule, SharedModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, SharedModule, FormsModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './sale-product.component.html',
   styleUrls: ['./sale-product.component.css']
 })

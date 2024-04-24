@@ -18,12 +18,16 @@ export class AlertsMsgService {
     return this.translate.instant(msg);
   }
 
+  info(msg: TypeMsg): void {
+    this.messageService.add({ severity: 'info', summary: this.i18n(msg.summary), detail: this.i18n(msg.msg) }); 
+  }
+
   success(msg: TypeMsg): void {
     this.messageService.add({ severity: 'success', summary: this.i18n(msg.summary), detail: this.i18n(msg.msg) }); 
   }
 
   warning(msg: TypeMsg): void {
-    this.messageService.add({ severity: 'success', summary: this.i18n(msg.summary), detail: this.i18n(msg.msg) }); 
+    this.messageService.add({ severity: 'warn', summary: this.i18n(msg.summary), detail: this.i18n(msg.msg) }); 
   }
 
   error(msg: TypeMsg): void {

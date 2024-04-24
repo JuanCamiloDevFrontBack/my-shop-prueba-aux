@@ -37,7 +37,9 @@
     },
     "alerts": {
         "ok": "Acción Éxitosa",
-        "err": "",
+        "info": "Note",
+        "warn": "Warning",
+        "err": "Error",
         "login": {
             "success": {
                 "session": "Inicio de Sesión Éxitoso",
@@ -62,6 +64,9 @@
         },
         "inventory": {
             "success": {},
+            "info": {
+                "msg-1": "Registre en el inventario al menos un producto para poder efectuar la venta."
+            },
             "warning": {},
             "error": {}
         }

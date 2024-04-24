@@ -94,19 +94,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     this.stockHttp.createProductStockHttp(this.productForm.value)
       .then(msg => {
-        this.alerts.success({ summary: '', msg: msg as string });
+        this.alerts.success({ summary: 'alerts.ok', msg: msg as string });
         this.productForm.reset();
       });
   }
 
   saleProduct(): void {
-    this.messageService.add({ severity: 'warn', summary: 'Advertencia', detail: 'Funcionalidad en desarrollo' });
+    this.alerts.warning({ summary: 'alerts.warn', msg: 'Funcionalidad en desarrollo' });
     if (this.productos.length > 0) {
       this.router.navigate(['sale-product']);
       return;
     }
 
-    this.messageService.add({ severity: 'info', summary: 'Información', detail: 'Registre en el inventario al menos un producto para poder efectuar la venta.' });
+    this.alerts.info({ summary: 'alerts.info', msg: 'alerts.inventory.info.msg-1' });
   }
 
   editProducts(): void {
@@ -130,7 +130,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   modifyProduct(): void {
     this.stockHttp.updateProductStockHttp(this.productForm.value)
       .then(msg => {
-        this.messageService.add({ severity: 'success', summary: 'Acción Éxitosa', detail: msg as string });
+        this.alerts.success({ summary: 'alerts.ok', msg: msg as string });
         this.productForm.reset();
         this.isCreate = true;
         this.isVisibleForm = false;
@@ -140,7 +140,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   deleteProducts(): void {
     this.stockHttp.deleteProductStockHttp(this.selectedProducts)
       .then(msg => {
-        this.messageService.add({ severity: 'success', summary: 'Acción Éxitosa', detail: msg as string });
+        this.alerts.success({ summary: 'alerts.ok', msg: msg as string });
         this.isCreate = true;
         this.isVisibleForm = false;
         this.selectedProducts = [];

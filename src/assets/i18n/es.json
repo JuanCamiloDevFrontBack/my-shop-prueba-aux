@@ -10,12 +10,17 @@
         "btns": {
             "label-login": "Iniciar sesión",
             "label-sign-up": "Registrarse",
-            "label-google": "Iniciar con Google",
-            "label-cancel": "Cancelar"
+            "label-google": "Iniciar con Google"
         }
     },
     "inventory": {
         "title": "Gestión de Inventario",
+        "form": {
+            "name": "Producto",
+            "price": "Cantidad",
+            "amount": "Cantidad en Stock",
+            "description": "Descripción"
+        },
         "table": {
             "btns": {
                 "edit": "Editar",
@@ -29,15 +34,29 @@
             "msg-empty-default": "No existen registros."
         }
     },
+    "sales-product": {
+        "title": "Venta de Productos",
+        "title-bill": "Factura",
+        "price": "Precio Unitario",
+        "form": {
+            "product": "Producto",
+            "amount": "Cantidad"
+        }
+    },
     "msg-errors": {
         "login": {
             "email": "El campo esta vacío o el valor ingresado es inválido.",
             "pass": "El campo esta vacío o el valor ingresado es inválido."
+        },
+        "sales-product": {
+            "amount": "La cantidad ingresada del producto es invalida, excede el stock que se tiene almacenado."
         }
     },
     "alerts": {
         "ok": "Acción Éxitosa",
-        "err": "",
+        "info": "Nota",
+        "warn": "Advertencia",
+        "err": "Error",
         "login": {
             "success": {
                 "session": "Inicio de Sesión Éxitoso",
@@ -62,8 +81,18 @@
         },
         "inventory": {
             "success": {},
+            "info": {
+                "msg-1": "Registre en el inventario al menos un producto para poder efectuar la venta."
+            },
             "warning": {},
             "error": {}
         }
+    },
+    "btns": {
+        "search": "Consultar",
+        "add": "Agregar",
+        "cancel": "Cancelar",
+        "edit": "Editar",
+        "delete": "Eliminar"
     }
 }
