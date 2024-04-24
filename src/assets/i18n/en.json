@@ -1,6 +1,7 @@
 {
     "login": {
         "title": "Log in",
+        "close": "Cerrar Sesión",
         "title-sign-up": "Sign up",
         "email": "Email",
         "pass": "Password",
@@ -32,6 +33,37 @@
         "login": {
             "email": "The field is empty or the value entered is invalid.",
             "pass": "The field is empty or the value entered is invalid."
+        }
+    },
+    "alerts": {
+        "ok": "Acción Éxitosa",
+        "err": "",
+        "login": {
+            "success": {
+                "session": "Inicio de Sesión Éxitoso",
+                "welcome": "Bienvenido al sistema"
+            },
+            "warning": {},
+            "error": {
+                "session": "Error de Inicio",
+                "msg-err": "Ocurrio un error en el inicio de sesión"
+            }
+        },
+        "sign-up": {
+            "success": {
+                "session": "Registro Éxitoso",
+                "welcome": "El registro de usurio fue éxitoso"
+            },
+            "warning": {},
+            "error": {
+                "session": "Error al Registrase",
+                "msg-err": "Ocurrio un error en el registro de usuario"
+            }
+        },
+        "inventory": {
+            "success": {},
+            "warning": {},
+            "error": {}
         }
     }
 }
