@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MessageService } from 'primeng/api';
 import { Subject, takeUntil } from 'rxjs';
 import { ProductE, Producto } from 'src/app/core/interfaces/producto';
 import { AlertsMsgService } from 'src/app/core/services/alerts-msg.service';
@@ -27,7 +26,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   private readonly stockHttp = inject(HttpApiService);
   private readonly router = inject(Router);
   private readonly fb = inject(FormBuilder);
-  private readonly messageService = inject(MessageService);
   private readonly alerts = inject(AlertsMsgService);
 
   ngOnInit(): void {
