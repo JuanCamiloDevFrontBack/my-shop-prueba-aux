@@ -26,7 +26,7 @@ export class ProductService {
   }
 
   getRegistersHttpFake(): Promise<unknown> {
-    return Promise.resolve(this.products);
+    return Promise.resolve([...this.products].concat([]));
   }
 
   getRegistersBillHttpFake(): Promise<unknown> {
