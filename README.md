@@ -3,7 +3,7 @@
 ## Estado del Proyecto: En Desarrollo.
 
 Este repositorio contiene un proyecto práctico sobre Angular V.16, que permite efectuar acciones de tipo `CRUD`
-sobre la información a manipular, el cual se divide en 3 ramas `main`, `develop` y `deployment`.
+sobre la información a manipular, el cual se divide en 4 ramas `main`, `application-level-persistence`, `develop` y `deployment`.
 
 Nota: el proyecto soporta multilenguaje(I18N) en los idiomas de español e inglés.
 
@@ -45,6 +45,10 @@ Se utilizan las siguientes herramientas:
 
 La rama `main` se utiliza solo para proporcionar información básica del repositorio,
 en este caso el archivo `README`.
+
+### `application-level-persistence`
+
+En la rama `application-level-persistence` encontrarás el proyecto de Angular, con las mismas caracteristicas de la rama `develop`, sin embargo tener presente que la persistencia de la información(conexión con base de datos) no existe, no esta conectado, si no que se gestiona por medio de estructuras de control en el servicio `product.service.ts`.
 
 ### `develop`
 
