@@ -52,14 +52,14 @@ En la rama `application-level-persistence` encontrarás el proyecto de Angular, 
 
 ### `develop`
 
-En la rama `develop` encontrarás el proyecto de Angular, el cual gestiona productos de una tienda. Incluye la creación de pantallas de inicio de sesión y registro, así como otras funcionalidades como la creación, edición y eliminación de productos en el inventario, entre otras.
+En la rama `develop` encontrarás el proyecto de Angular, el cual gestiona productos de una tienda. Incluye la creación de pantallas de inicio de sesión y registro, así como otras funcionalidades como la creación, edición y eliminación de productos en el inventario, entre otras, registrando la información en una base de datos.
 
 Cabe mencionar que el proyecto ya tiene configurado 2 ambientes, correspondientes a `environment.ts`(si se despliega a producción tomaría este archivo) y `environment.development.ts`(al desplegarlo en modo desarrollo toma este archivo).
 En estos archivos se encuentran las configuraciones de Firebase para su funcionamiento.
 
 ### `deployment`
 
-En la rama `deployment` encontrarás el proyecto de Angular listo para llevar a producción.
+En la rama `deployment` encontrarás el proyecto de Angular estable y listo para llevar a producción.
 
 ## Instrucciones de Ejecución
 
