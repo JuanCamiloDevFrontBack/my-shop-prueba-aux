@@ -63,9 +63,9 @@ En la rama `deployment` encontrarás el proyecto de Angular estable y listo para
 
 ## Instrucciones de Ejecución
 
-### Rama Develop
+### Rama Develop y Application-Level-Persistence
 
-Para poner en ejecución el proyecto de la presente rama se requieren los siguientes items:
+Para poner en ejecución el proyecto de las presentes ramas se requieren los siguientes items:
 * Git instalado para clonar el repositorio remoto en la máquina local.
 * NodeJS instalado, para descargar las dependencias que utilice el proyecto definidas en el archivo package.json.
 
@@ -75,7 +75,7 @@ Ejecutar los siguientes comandos:
 1. `git clone https://github.com/JuanCamiloDevFrontBack/my-shop-prueba-aux.git`.
 2. `npm i` ó `npm install`.
 4. Levantar la aplicación con: `npm run start`.
-5. Abrir en el navegador la siguiente url: `http://localhost:7200/`.
+5. Abrir en el navegador la siguiente url: `http://localhost:7200/` ó `http://localhost:7200/login`.
 
 
 ### Rama Deployment
