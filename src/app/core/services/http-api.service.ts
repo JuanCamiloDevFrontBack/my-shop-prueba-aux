@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { BillF, Producto } from '../interfaces/producto';
+import { BillF, ProductE, Producto } from '../interfaces/producto';
 import { ProductService } from './product.service';
 
 @Injectable({
@@ -13,6 +13,12 @@ export class HttpApiService {
 
   getStockProductHttp(): Promise<unknown> {
     return this.httpFake.getRegistersHttpFake();
+  }
+
+  getStockProductOfBillHttp(): Promise<unknown> {
+    return this.httpFake.getRegistersHttpFake()
+    .then((prod: any) => prod.filter(
+      (product: Producto) => product[ProductE.amount] !== 0));
   }
 
   createProductStockHttp(newProduct: Producto): Promise<unknown> {

@@ -38,6 +38,7 @@
         "title": "Venta de Productos",
         "title-bill": "Factura",
         "price": "Precio Unitario",
+        "sub-total": "SubTotal",
         "form": {
             "product": "Producto",
             "amount": "Cantidad"
@@ -92,7 +93,10 @@
                 "msg-1": "Registre en el inventario al menos un producto para poder efectuar la venta."
             },
             "warning": {},
-            "error": {}
+            "error": {
+                "msg-1": "Se produjo un error al modificar el producto en el inventario, vuelva a intentarlo.",
+                "msg-2": "Se produjo un error al eliminar los productos del inventario, vuelva a intentarlo."
+            }
         },
         "bill": {
             "success": {

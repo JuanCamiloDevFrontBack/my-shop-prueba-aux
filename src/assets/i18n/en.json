@@ -38,6 +38,7 @@
         "title": "Sale of Products",
         "title-bill": "Bill",
         "price": "Unit Price",
+        "sub-total": "SubTotal",
         "form": {
             "product": "Product",
             "amount": "Quantity"
@@ -92,7 +93,10 @@
                 "msg-1": "Register at least one product in the inventory to be able to make the sale."
             },
             "warning": {},
-            "error": {}
+            "error": {
+                "msg-1": "An error occurred while modifying the product in inventory, please try again.",
+                "msg-2": "An error occurred while deleting the products from inventory, please try again."
+            }
         },
         "bill": {
             "success": {

@@ -13,7 +13,7 @@
         </div>
       </div>
 
-      <div class="field">
+      <div *ngIf="billForm.get(inputs.name)?.value !== null" class="field">
         <label for="cantidad">{{'sales-product.form.amount' | translate}}</label>
         <div class="col aling-inputs-form">
           <input pInputText class="w-12 text-center" label="Cantidad" formControlName="{{inputs.amount}}" />
@@ -22,7 +22,9 @@
           {{'msg-errors.sales-product.amount' | translate}}
         </div>
       </div>
-
+campo form: <pre>{{billForm.get(inputs.name)?.value | json}}</pre>
+factura: <pre>{{factura | json}}</pre>
+productos: <pre>{{productos | json}}</pre>
       <section class="grid">
         <div class="col-6">
           <button pButton type="button" label="{{'btns.cancel' | translate}}" class="w-12 p-button-secondary" (click)="back()"></button>
@@ -37,14 +39,16 @@
   <p-card *ngIf="factura.length > 0" class="w-7 text-center" header="{{'sales-product.title-bill' | translate}}" [style]="{'border': '6px solid gray'}">
 
     <section class="grid">
-      <div class="col-4"><strong>{{'sales-product.form.product' | translate}}:</strong></div>
-      <div class="col-4"><strong>{{'sales-product.form.amount' | translate}}:</strong></div>
-      <div class="col-4"><strong>{{'sales-product.price' | translate}}:</strong></div>
+      <div class="col-3"><strong>{{'sales-product.form.product' | translate}}:</strong></div>
+      <div class="col-3"><strong>{{'sales-product.form.amount' | translate}}:</strong></div>
+      <div class="col-3"><strong>{{'sales-product.price' | translate}}:</strong></div>
+      <div class="col-3"><strong>{{'sales-product.sub-total' | translate}}:</strong></div>
     </section>
     <section class="grid" *ngFor="let producto of factura; trackBy: trackByProductBill">
-      <div class="col-4">{{ producto.nameProduct }}</div>
-      <div class="col-4">{{ producto.amountProduct }}</div>
-      <div class="col-4">{{ producto.priceProduct }}</div>
+      <div class="col-3">{{ producto.nameProduct }}</div>
+      <div class="col-3">{{ producto.amountProduct }}</div>
+      <div class="col-3">{{ producto.priceProduct | currency }}</div>
+      <div class="col-3">{{ producto.amountProduct * producto.priceProduct | currency }}</div>
     </section>
 
     <p-divider></p-divider>

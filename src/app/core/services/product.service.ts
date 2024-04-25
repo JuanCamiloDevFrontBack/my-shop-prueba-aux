@@ -30,7 +30,7 @@ export class ProductService {
   }
 
   getRegistersBillHttpFake(): Promise<unknown> {
-    return Promise.resolve(this.bill);
+    return Promise.resolve([...this.bill].concat([]));
   }
 
   postCreateRegister(addProduct: Producto): Promise<unknown> {
@@ -45,20 +45,33 @@ export class ProductService {
 
   postEditRegister(editProduct: Producto): Promise<unknown> {
     const index = this.products.findIndex(value => value.id === editProduct.id);
+    if (index === -1) {
+      return Promise.reject('alerts.inventory.error.msg-1');
+    }
     this.products[index] = editProduct;
     return Promise.resolve('alerts.inventory.success.msg-2');
   }
 
-  postDeleteRegister(id: number[]): Promise<unknown> {
+  postDeleteRegister(arrayId: number[]): Promise<unknown> {
     let index = 0;
     let indexBill = 0;
-    id.forEach(idSearch => {
+    let elementNotFound: number[] = [];
+    let elementBillNotFound: number[] = [];
+    arrayId.forEach(idSearch => {
       index = this.products.findIndex(produ => produ.id === idSearch)
       indexBill = this.bill.findIndex(produ => produ.id === idSearch)
-      this.products.splice(index, 1);
-      this.bill.splice(indexBill, 1);
+
+      if (index === -1) elementNotFound.push(idSearch);
+      else this.products.splice(index, 1);
+
+      if (indexBill === -1) elementBillNotFound.push(idSearch);
+      else this.bill.splice(indexBill, 1);
     })
-    return Promise.resolve('alerts.inventory.success.msg-3');
+
+    if (elementNotFound.length === 0) {
+      return Promise.resolve('alerts.inventory.success.msg-3');
+    }
+    return Promise.reject('alerts.inventory.error.msg-2');
   }
 
   postAddRegisterBill(addProduct: BillF): Promise<unknown> {

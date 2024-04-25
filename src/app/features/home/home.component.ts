@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   productos: Producto[] = [];
   selectedProducts: Producto[] = [];
 
-  unsuscribe$!: Subject<void>
+  private unsuscribe$!: Subject<void>
 
   private readonly stockHttp = inject(HttpApiService);
   private readonly router = inject(Router);
@@ -134,7 +134,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.productForm.reset();
         this.isCreate = true;
         this.isVisibleForm = false;
-      });
+      })
+      .catch(err => this.alerts.error({summary: 'alerts.err', msg: err}));
   }
 
   deleteProducts(): void {
@@ -145,7 +146,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.isCreate = true;
         this.isVisibleForm = false;
         this.selectedProducts = [];
-      });
+      })
+      .catch(err => this.alerts.error({summary: 'alerts.err', msg: err}));
   }
 
 }

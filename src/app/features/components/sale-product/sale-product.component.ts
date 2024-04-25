@@ -23,9 +23,10 @@ export class SaleProductComponent implements OnInit, OnDestroy {
   billForm!: FormGroup;
   productos: Producto[] = [];
   factura: Producto[] = [];
+  subTotal: number[] = [];
   total!: number;
 
-  unsuscribe$!: Subject<void>;
+  private unsuscribe$!: Subject<void>;
 
   private readonly router = inject(Router);
   private readonly fb = inject(FormBuilder);
@@ -51,8 +52,8 @@ export class SaleProductComponent implements OnInit, OnDestroy {
   }
 
   showBill(): void {
-    this.stockHttp.getStockProductHttp()
-      .then(prod => {
+    this.stockHttp.getStockProductOfBillHttp()
+      .then(prod => {       
         this.productos = prod as Producto[];
       });
     this.stockHttp.getBillHttp()
@@ -75,17 +76,23 @@ export class SaleProductComponent implements OnInit, OnDestroy {
   }
 
   isAmountValid(): void {
-    const { amount } = ProductE;
-
-    this.billForm.get(amount)?.valueChanges
+    this.billForm.get(ProductE.amount)?.valueChanges
       .pipe(takeUntil(this.unsuscribe$))
-      .subscribe(value => {
-        if (Number(value) > +this.inputProdForm()?.[amount]) {
-          this.billForm.get(amount)?.setErrors({
-            invalidValue: true
-          });
-        }
+      .subscribe(value => this.isValueInputValid(value));
+  }
+
+  isValueInputValid(value: string): void {    
+    const isInvalid = (
+      isNaN(+value) ||
+      Number(value) < 1 ||
+      Number(value) > +this.inputProdForm()?.[ProductE.amount]
+    );
+
+    if (isInvalid) {
+      this.billForm.get(ProductE.amount)?.setErrors({
+        invalidValue: true
       });
+    }
   }
 
   trackByProductBill(index: number, item: Producto): number {
