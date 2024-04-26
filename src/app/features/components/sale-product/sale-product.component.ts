@@ -8,6 +8,7 @@ import { HttpApiService } from 'src/app/core/services/http-api.service';
 import { ProductService } from 'src/app/core/services/product.service';
 import { Subject, takeUntil } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
+import { AlertsMsgService } from 'src/app/core/services/alerts-msg.service';
 
 @Component({
   selector: 'app-sale-product',
@@ -30,6 +31,7 @@ export class SaleProductComponent implements OnInit, OnDestroy {
 
   private readonly router = inject(Router);
   private readonly fb = inject(FormBuilder);
+  private readonly alerts = inject(AlertsMsgService);
   private readonly prodService = inject(ProductService);
   private readonly stockHttp = inject(HttpApiService);
 
@@ -53,7 +55,7 @@ export class SaleProductComponent implements OnInit, OnDestroy {
 
   showBill(): void {
     this.stockHttp.getStockProductOfBillHttp()
-      .then(prod => {       
+      .then(prod => {
         this.productos = prod as Producto[];
       });
     this.stockHttp.getBillHttp()
@@ -63,9 +65,9 @@ export class SaleProductComponent implements OnInit, OnDestroy {
   }
 
   createFormBill(): void {
-    const { amount, ...prod } = ProductE;
+    const { amount, infoProduct } = ProductE;
     this.billForm = this.fb.group({
-      [prod.name]: [null, Validators.required],
+      [infoProduct]: [null, Validators.required],
       [amount]: [null, Validators.required]
     });
     this.isAmountValid();
@@ -81,7 +83,7 @@ export class SaleProductComponent implements OnInit, OnDestroy {
       .subscribe(value => this.isValueInputValid(value));
   }
 
-  isValueInputValid(value: string): void {    
+  isValueInputValid(value: string): void {
     const isInvalid = (
       isNaN(+value) ||
       Number(value) < 1 ||
@@ -99,20 +101,27 @@ export class SaleProductComponent implements OnInit, OnDestroy {
     return item.id;
   }
 
-  agregarProducto(): void {
-    if (this.factura.length === 0) {
-      this.stockHttp.updateBillHttp(this.billForm.value);
+  addProduct(): void {
+    const methodMsg = (typeAlert: string, message: any) => {
       this.billForm.reset();
       this.showBill();
+      this.alerts.success({ summary: typeAlert, msg: message })
+    }
+
+    if (this.factura.length === 0) {
+      this.stockHttp.updateBillHttp(this.billForm.value)
+        .then(msg => methodMsg('alerts.ok', msg))
+        .catch(err => this.alerts.error({ summary: 'alerts.err', msg: err as string }));
       return;
     }
 
     const newRegister = this.prodService.isRegisterDuplicateBill(this.billForm.value);
     if (newRegister) {
-      this.stockHttp.updateBillHttp(this.billForm.value);
+      this.stockHttp.updateBillHttp(this.billForm.value)
+        .then(msg => methodMsg('alerts.ok', msg))
+        .catch(err => this.alerts.error({ summary: 'alerts.err', msg: err as string }));
     }
-    this.billForm.reset();
-    this.showBill();
+    methodMsg('alerts.ok', 'alerts.bill.success.msg-2')
   }
 
   back(): void {

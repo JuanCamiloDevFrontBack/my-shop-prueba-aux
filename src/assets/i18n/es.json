@@ -100,11 +100,14 @@
         },
         "bill": {
             "success": {
-                "msg-1": "Se agregó el producto en la factura."
+                "msg-1": "Se agregó el producto en la factura.",
+                "msg-2": "Se actualizó el producto en la factura."
             },
             "info": {},
             "warning": {},
-            "error": {}
+            "error": {
+                "msg-1": "Se produjo un error al agregar el producto a la factura, vuelva a intentarlo."
+            }
         }
     },
     "btns": {

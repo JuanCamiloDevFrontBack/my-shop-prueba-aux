@@ -18,7 +18,7 @@ export class HttpApiService {
   getStockProductOfBillHttp(): Promise<unknown> {
     return this.httpFake.getRegistersHttpFake()
     .then((prod: any) => prod.filter(
-      (product: Producto) => product[ProductE.amount] !== 0));
+      (product: Producto) => product[ProductE.amount] > 0));
   }
 
   createProductStockHttp(newProduct: Producto): Promise<unknown> {

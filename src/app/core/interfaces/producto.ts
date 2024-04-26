@@ -3,6 +3,7 @@ export enum ProductE {
     price = 'priceProduct',
     amount = 'amountProduct',
     description = 'descriptionProduct',
+    infoProduct = 'productDetail'
   }
   
   export interface Producto {
@@ -14,6 +15,6 @@ export enum ProductE {
   }
 
   export interface BillF {
-    [ProductE.name]: Producto;
+    [ProductE.infoProduct]: Producto;
     [ProductE.amount]: number;
   }

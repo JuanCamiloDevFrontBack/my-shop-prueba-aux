@@ -12,14 +12,15 @@ export class ProductService {
   constructor() { }
 
   isRegisterDuplicateBill(addProduct: BillF): boolean {
-    const { nameProduct, amountProduct } = structuredClone(addProduct);
-    const exist = this.bill.some(item => item.id === nameProduct.id);
+    const { productDetail, amountProduct } = structuredClone(addProduct);
+    const exist = this.bill.some(item => item.id === productDetail.id);
 
     if (exist) {
-      const index = this.bill.findIndex(item => item.id === nameProduct.id);
-      this.bill[index][ProductE.amount] += Number(amountProduct);
-      const ind = this.products.findIndex(produ => produ.id === nameProduct.id);
-      this.products[ind][ProductE.amount] -= Number(amountProduct);
+      const index = this.bill.findIndex(item => item.id === productDetail.id);
+      let amountProductNumber = Number(amountProduct);
+      this.bill[index][ProductE.amount] += amountProductNumber;
+      const ind = this.products.findIndex(produ => produ.id === productDetail.id);
+      this.products[ind][ProductE.amount] -= amountProductNumber;
       return false;
     }
     return true;
@@ -75,13 +76,18 @@ export class ProductService {
   }
 
   postAddRegisterBill(addProduct: BillF): Promise<unknown> {
-    const { nameProduct, amountProduct } = structuredClone(addProduct);
-    let index = 0;
+    const { productDetail, amountProduct } = structuredClone(addProduct);
 
-    nameProduct[ProductE.amount] = Number(amountProduct);
-    this.bill.push(nameProduct);
-    index = this.products.findIndex(produ => produ.id === nameProduct.id)
-    this.products[index][ProductE.amount] -= Number(amountProduct);
+    let index = this.products.findIndex(produ => produ.id === productDetail.id);
+    if (index === -1) {
+      return Promise.reject('alerts.bill.error.msg-1');
+    }
+
+    let amountProductNumber = Number(amountProduct);
+
+    productDetail[ProductE.amount] = amountProductNumber;
+    this.bill.push(productDetail);    
+    this.products[index][ProductE.amount] -= amountProductNumber;
     return Promise.resolve('alerts.bill.success.msg-1');
   }
 

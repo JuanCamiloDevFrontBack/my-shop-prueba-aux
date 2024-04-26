@@ -100,11 +100,14 @@
         },
         "bill": {
             "success": {
-                "msg-1": "The product was added to the bill."
+                "msg-1": "The product was added to the bill.",
+                "msg-2": "The product was updated on the bill."
             },
             "info": {},
             "warning": {},
-            "error": {}
+            "error": {
+                "msg-1": "There was an error adding the product to the invoice, please try again."
+            }
         }
     },
     "btns": {

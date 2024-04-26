@@ -1,19 +1,20 @@
 <!-- apruebe en la factura para que decuente -->
+<p-toast></p-toast>
 <div class="grid flex justify-content-center">
   <div class="col-12 flex align-items-center justify-content-center">
     <h2>{{'sales-product.title' | translate}}</h2>
   </div>
   <div class="col-10">
-    <form [formGroup]="billForm" (ngSubmit)="agregarProducto()">
+    <form [formGroup]="billForm" (ngSubmit)="addProduct()">
       <div class="field">
         <label for="producto">{{'sales-product.form.product' | translate}}</label>
         <div class="col aling-inputs-form">
           <p-dropdown class="text-center" [style]="{'width':'100%'}" [options]="productos" [optionLabel]="'nameProduct'"
-            formControlName="{{inputs.name}}"></p-dropdown>
+            formControlName="{{inputs.infoProduct}}"></p-dropdown>
         </div>
       </div>
 
-      <div *ngIf="billForm.get(inputs.name)?.value !== null" class="field">
+      <div *ngIf="billForm.get(inputs.infoProduct)?.value !== null" class="field">
         <label for="cantidad">{{'sales-product.form.amount' | translate}}</label>
         <div class="col aling-inputs-form">
           <input pInputText class="w-12 text-center" label="Cantidad" formControlName="{{inputs.amount}}" />
@@ -22,7 +23,7 @@
           {{'msg-errors.sales-product.amount' | translate}}
         </div>
       </div>
-campo form: <pre>{{billForm.get(inputs.name)?.value | json}}</pre>
+campo form: <pre>{{billForm.get(inputs.infoProduct)?.value | json}}</pre>
 factura: <pre>{{factura | json}}</pre>
 productos: <pre>{{productos | json}}</pre>
       <section class="grid">
