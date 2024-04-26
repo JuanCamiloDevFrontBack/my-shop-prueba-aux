@@ -1,5 +1,7 @@
 <!-- apruebe en la factura para que decuente -->
 <p-toast></p-toast>
+<p-messages [key]="'alert-product'" [(value)]="messages" [enableService]="false" [closable]="true"></p-messages>
+
 <div class="grid flex justify-content-center">
   <div class="col-12 flex align-items-center justify-content-center">
     <h2>{{'sales-product.title' | translate}}</h2>
@@ -23,9 +25,9 @@
           {{'msg-errors.sales-product.amount' | translate}}
         </div>
       </div>
-campo form: <pre>{{billForm.get(inputs.infoProduct)?.value | json}}</pre>
+<!-- campo form: <pre>{{billForm.get(inputs.infoProduct)?.value | json}}</pre>
 factura: <pre>{{factura | json}}</pre>
-productos: <pre>{{productos | json}}</pre>
+productos: <pre>{{productos | json}}</pre> -->
       <section class="grid">
         <div class="col-6">
           <button pButton type="button" label="{{'btns.cancel' | translate}}" class="w-12 p-button-secondary" (click)="back()"></button>

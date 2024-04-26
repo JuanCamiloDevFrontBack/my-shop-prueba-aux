@@ -9,11 +9,13 @@ import { ProductService } from 'src/app/core/services/product.service';
 import { Subject, takeUntil } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 import { AlertsMsgService } from 'src/app/core/services/alerts-msg.service';
+import { MessagesModule } from 'primeng/messages';
+import { Message } from 'primeng/api';
 
 @Component({
   selector: 'app-sale-product',
   standalone: true,
-  imports: [CommonModule, SharedModule, FormsModule, ReactiveFormsModule, TranslateModule],
+  imports: [CommonModule, SharedModule, FormsModule, ReactiveFormsModule, MessagesModule, TranslateModule],
   templateUrl: './sale-product.component.html',
   styleUrls: ['./sale-product.component.css']
 })
@@ -26,6 +28,8 @@ export class SaleProductComponent implements OnInit, OnDestroy {
   factura: Producto[] = [];
   subTotal: number[] = [];
   total!: number;
+
+  messages!: Message[];
 
   private unsuscribe$!: Subject<void>;
 
@@ -49,6 +53,7 @@ export class SaleProductComponent implements OnInit, OnDestroy {
 
   initVariables(): void {
     this.total = 0;
+    this.messages = [];
     this.unsuscribe$ = new Subject();
     this.showBill();
   }
@@ -57,11 +62,23 @@ export class SaleProductComponent implements OnInit, OnDestroy {
     this.stockHttp.getStockProductOfBillHttp()
       .then(prod => {
         this.productos = prod as Producto[];
+        this.showAlertProducts();
       });
     this.stockHttp.getBillHttp()
       .then(bill => {
         this.factura = bill as Producto[];
       });
+  }
+
+  showAlertProducts(): void {
+    if (this.productos.length === 0) {
+      const summary = this.alerts.i18n('alerts.warn');
+      const detail = this.alerts.i18n('alerts.bill.warning');
+      this.messages = [{ key: 'alert-product', severity: 'info', summary, detail }]
+    }
+    else {
+      this.messages = [];
+    }
   }
 
   createFormBill(): void {
@@ -74,7 +91,7 @@ export class SaleProductComponent implements OnInit, OnDestroy {
   }
 
   inputProdForm(): Producto {
-    return this.billForm.get(ProductE.name)?.value;
+    return this.billForm.get(ProductE.infoProduct)?.value;
   }
 
   isAmountValid(): void {
@@ -120,7 +137,9 @@ export class SaleProductComponent implements OnInit, OnDestroy {
       this.stockHttp.updateBillHttp(this.billForm.value)
         .then(msg => methodMsg('alerts.ok', msg))
         .catch(err => this.alerts.error({ summary: 'alerts.err', msg: err as string }));
-    } else methodMsg('alerts.ok', 'alerts.bill.success.msg-2')
+    } else {
+      methodMsg('alerts.ok', 'alerts.bill.success.msg-2');
+    }
   }
 
   back(): void {

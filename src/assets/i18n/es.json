@@ -104,7 +104,9 @@
                 "msg-2": "Se actualizó el producto en la factura."
             },
             "info": {},
-            "warning": {},
+            "warning": {
+                "empty-stock": "Productos agotados en el stock, es hora de realizar un nuevo pedido."
+            },
             "error": {
                 "msg-1": "Se produjo un error al agregar el producto a la factura, vuelva a intentarlo."
             }

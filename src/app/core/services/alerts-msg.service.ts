@@ -19,7 +19,7 @@ export class AlertsMsgService {
   }
 
   info(msg: TypeMsg): void {
-    this.messageService.add({ severity: 'info', summary: this.i18n(msg.summary), detail: this.i18n(msg.msg) }); 
+    this.messageService.add({ severity: 'info', summary: this.i18n(msg.summary), detail: this.i18n(msg.msg) });
   }
 
   success(msg: TypeMsg): void {

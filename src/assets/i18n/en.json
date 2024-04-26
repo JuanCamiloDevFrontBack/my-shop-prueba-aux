@@ -104,7 +104,9 @@
                 "msg-2": "The product was updated on the bill."
             },
             "info": {},
-            "warning": {},
+            "warning": {
+                "empty-stock": "Products out of stock, it's time to place a new order."
+            },
             "error": {
                 "msg-1": "There was an error adding the product to the invoice, please try again."
             }
