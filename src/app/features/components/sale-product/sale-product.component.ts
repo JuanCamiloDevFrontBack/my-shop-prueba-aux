@@ -120,8 +120,7 @@ export class SaleProductComponent implements OnInit, OnDestroy {
       this.stockHttp.updateBillHttp(this.billForm.value)
         .then(msg => methodMsg('alerts.ok', msg))
         .catch(err => this.alerts.error({ summary: 'alerts.err', msg: err as string }));
-    }
-    methodMsg('alerts.ok', 'alerts.bill.success.msg-2')
+    } else methodMsg('alerts.ok', 'alerts.bill.success.msg-2')
   }
 
   back(): void {
