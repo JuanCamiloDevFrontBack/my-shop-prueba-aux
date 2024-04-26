@@ -11,7 +11,6 @@ export enum ProductE {
     [ProductE.price]: number;
     [ProductE.amount]: number;
     [ProductE.description]: string;
-    subTotal: string;
   }
 
   export interface BillF {
