@@ -67,6 +67,7 @@ export class SaleProductComponent implements OnInit, OnDestroy {
     this.stockHttp.getBillHttp()
       .then(bill => {
         this.factura = bill as Producto[];
+        this.total = this.prodService.calculateTotalSaleBill(this.factura);
       });
   }
 

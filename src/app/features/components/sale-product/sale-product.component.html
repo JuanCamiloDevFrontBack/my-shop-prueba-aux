@@ -1,4 +1,5 @@
-<!-- apruebe en la factura para que decuente -->
+<!-- apruebe en la factura para que decuente
+boton de cerrar factura -->
 <p-toast></p-toast>
 <p-messages [key]="'alert-product'" [(value)]="messages" [enableService]="false" [closable]="true"></p-messages>
 
@@ -39,7 +40,7 @@ productos: <pre>{{productos | json}}</pre> -->
     </form>
   </div>
 
-  <p-card *ngIf="factura.length > 0" class="w-7 text-center" header="{{'sales-product.title-bill' | translate}}" [style]="{'border': '6px solid gray'}">
+  <p-card *ngIf="factura.length > 0" class="w-8 text-center" header="{{'sales-product.title-bill' | translate}}" [style]="{'border': '6px solid gray'}">
 
     <section class="grid">
       <div class="col-3"><strong>{{'sales-product.form.product' | translate}}:</strong></div>

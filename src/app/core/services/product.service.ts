@@ -26,6 +26,14 @@ export class ProductService {
     return true;
   }
 
+  calculateTotalSaleBill(billProd: Producto[]): number {
+    let sum = 0;
+    billProd.forEach(prod => {
+      sum += (prod[ProductE.amount] * prod[ProductE.price]);
+    }) 
+    return sum;
+  }
+
   getRegistersHttpFake(): Promise<unknown> {
     return Promise.resolve([...this.products].concat([]));
   }
