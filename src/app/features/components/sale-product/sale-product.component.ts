@@ -74,7 +74,7 @@ export class SaleProductComponent implements OnInit, OnDestroy {
   showAlertProducts(): void {
     if (this.productos.length === 0) {
       const summary = this.alerts.i18n('alerts.warn');
-      const detail = this.alerts.i18n('alerts.bill.warning');
+      const detail = this.alerts.i18n('alerts.bill.warning.empty-stock');
       this.messages = [{ key: 'alert-product', severity: 'info', summary, detail }]
     }
     else {
