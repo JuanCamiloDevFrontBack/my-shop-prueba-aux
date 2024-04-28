@@ -36,6 +36,9 @@ productos: <pre>{{productos | json}}</pre> -->
         <div class="col-6">
           <button pButton type="submit" label="{{'btns.add' | translate}}" class="w-12" [disabled]="billForm.invalid"></button>
         </div>
+        <div class="col-12">
+          <button pButton type="submit" label="{{'Confirmar Factura' | translate}}" class="w-12 p-button-success" [disabled]="billForm.invalid"></button>
+        </div>
       </section>
     </form>
   </div>
