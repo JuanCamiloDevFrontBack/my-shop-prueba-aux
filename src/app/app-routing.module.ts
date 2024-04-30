@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'home', component: HomeComponent, 
-  // canActivate: [authGuard]
+  canActivate: [authGuard]
 },
   {
     path: 'sale-product',
