@@ -42,6 +42,9 @@
         "form": {
             "product": "Product",
             "amount": "Quantity"
+        },
+        "btns": {
+            "sellBill": "Sell Bill"
         }
     },
     "msg-errors": {

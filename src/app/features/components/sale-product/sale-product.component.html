@@ -8,7 +8,7 @@ boton de cerrar factura -->
     <h2>{{'sales-product.title' | translate}}</h2>
   </div>
   <div class="col-10">
-    <form [formGroup]="billForm" (ngSubmit)="addProduct()">
+    <form [formGroup]="billForm" (ngSubmit)="autorizeBill()">
       <div class="field">
         <label for="producto">{{'sales-product.form.product' | translate}}</label>
         <div class="col aling-inputs-form">
@@ -34,10 +34,10 @@ productos: <pre>{{productos | json}}</pre> -->
           <button pButton type="button" label="{{'btns.cancel' | translate}}" class="w-12 p-button-secondary" (click)="back()"></button>
         </div>
         <div class="col-6">
-          <button pButton type="submit" label="{{'btns.add' | translate}}" class="w-12" [disabled]="billForm.invalid"></button>
+          <button pButton type="button" label="{{'btns.add' | translate}}" class="w-12" [disabled]="billForm.invalid" (click)="addProduct()"></button>
         </div>
         <div class="col-12">
-          <button pButton type="submit" label="{{'Confirmar Factura' | translate}}" class="w-12 p-button-success" [disabled]="billForm.invalid"></button>
+          <button pButton type="submit" label="{{'sales-product.btns.sellBill' | translate}}" class="w-12 p-button-success" [disabled]="factura.length === 0"></button>
         </div>
       </section>
     </form>
@@ -45,6 +45,29 @@ productos: <pre>{{productos | json}}</pre> -->
 
   <p-card *ngIf="factura.length > 0" class="w-8 text-center" header="{{'sales-product.title-bill' | translate}}" [style]="{'border': '6px solid gray'}">
 
+    <section class="grid">
+      <div class="col-3"><strong>{{'sales-product.form.product' | translate}}:</strong></div>
+      <div class="col-3"><strong>{{'sales-product.form.amount' | translate}}:</strong></div>
+      <div class="col-3"><strong>{{'sales-product.price' | translate}}:</strong></div>
+      <div class="col-3"><strong>{{'sales-product.sub-total' | translate}}:</strong></div>
+    </section>
+    <section class="grid" *ngFor="let producto of factura; trackBy: trackByProductBill">
+      <div class="col-3">{{ producto.nameProduct }}</div>
+      <div class="col-3">{{ producto.amountProduct }}</div>
+      <div class="col-3">{{ producto.priceProduct | currency }}</div>
+      <div class="col-3">{{ producto.amountProduct * producto.priceProduct | currency }}</div>
+    </section>
+
+    <p-divider></p-divider>
+
+    <div>Total: {{ total }}</div>
+  </p-card>
+
+
+  <p-divider class="w-12"></p-divider>
+  <!-- *ngFor="let a of billHistory" -->
+  <p-card *ngIf="billHistory.length > 0" class="w-12 text-center" header="{{'sales-product.title-bill-history' | translate}}" [style]="{'border': '6px solid gray'}">
+<!-- Listado de facturas aprobadas anteriormente -->
     <section class="grid">
       <div class="col-3"><strong>{{'sales-product.form.product' | translate}}:</strong></div>
       <div class="col-3"><strong>{{'sales-product.form.amount' | translate}}:</strong></div>

@@ -26,6 +26,7 @@ export class SaleProductComponent implements OnInit, OnDestroy {
   billForm!: FormGroup;
   productos: Producto[] = [];
   factura: Producto[] = [];
+  billHistory: Producto[][] = [];
   subTotal: number[] = [];
   total!: number;
 
@@ -55,19 +56,22 @@ export class SaleProductComponent implements OnInit, OnDestroy {
     this.total = 0;
     this.messages = [];
     this.unsuscribe$ = new Subject();
-    this.showBill();
+    this.showBill(true);
   }
 
-  showBill(): void {
-    this.stockHttp.getStockProductOfBillHttp()
-      .then(prod => {
-        this.productos = prod as Producto[];
-        this.showAlertProducts();
-      });
+  showBill(updatesProducts: boolean = false): void {
+    if (updatesProducts) {
+      this.stockHttp.getStockProductOfBillHttp()
+        .then(prod => {
+          this.productos = prod as Producto[];
+          this.showAlertProducts();
+        });
+    }
     this.stockHttp.getBillHttp()
       .then(bill => {
         this.factura = bill as Producto[];
-        this.total = this.prodService.calculateTotalSaleBill(this.factura);
+        this.total = (this.factura.length > 0) ?
+        this.prodService.calculateTotalSaleBill(this.factura) : 0;
       });
   }
 
@@ -119,15 +123,39 @@ export class SaleProductComponent implements OnInit, OnDestroy {
     return item.id;
   }
 
+  // addProduct(): void {
+  //   const methodMsg = (typeAlert: string, message: any) => {
+  //     this.billForm.reset();
+  //     this.showBill();
+  //     this.alerts.success({ summary: typeAlert, msg: message })
+  //   }
+
+  //   if (this.factura.length === 0) {
+  //     this.stockHttp.updateBill2Http(this.billForm.value)
+  //       .then(msg => methodMsg('alerts.ok', msg))
+  //       .catch(err => this.alerts.error({ summary: 'alerts.err', msg: err as string }));
+  //     return;
+  //   }
+
+  //   const newRegister = this.prodService.isRegisterDuplicateBill(this.billForm.value);
+  //   if (newRegister) {
+  //     this.stockHttp.updateBill2Http(this.billForm.value)
+  //       .then(msg => methodMsg('alerts.ok', msg))
+  //       .catch(err => this.alerts.error({ summary: 'alerts.err', msg: err as string }));
+  //   } else {
+  //     methodMsg('alerts.ok', 'alerts.bill.success.msg-2');
+  //   }
+  // }
+
   addProduct(): void {
     const methodMsg = (typeAlert: string, message: any) => {
       this.billForm.reset();
-      this.showBill();
+      this.showBill();// no llamar a producto
       this.alerts.success({ summary: typeAlert, msg: message })
     }
 
     if (this.factura.length === 0) {
-      this.stockHttp.updateBillHttp(this.billForm.value)
+      this.stockHttp.updateBill2Http(this.billForm.value)
         .then(msg => methodMsg('alerts.ok', msg))
         .catch(err => this.alerts.error({ summary: 'alerts.err', msg: err as string }));
       return;
@@ -135,7 +163,7 @@ export class SaleProductComponent implements OnInit, OnDestroy {
 
     const newRegister = this.prodService.isRegisterDuplicateBill(this.billForm.value);
     if (newRegister) {
-      this.stockHttp.updateBillHttp(this.billForm.value)
+      this.stockHttp.updateBill2Http(this.billForm.value)
         .then(msg => methodMsg('alerts.ok', msg))
         .catch(err => this.alerts.error({ summary: 'alerts.err', msg: err as string }));
     } else {
@@ -143,7 +171,24 @@ export class SaleProductComponent implements OnInit, OnDestroy {
     }
   }
 
+  autorizeBill(): void {
+    this.stockHttp.updateBillHistoryHttp(this.factura)
+      .then(msg => {
+        this.showBill(true);
+        this.updateBillHistory();
+        this.alerts.success({ summary: 'alerts.ok', msg: msg as string })
+      });
+  }
+
+  updateBillHistory(): void {
+    this.stockHttp.getBillHistoryHttp()
+      .then(bills => {
+        this.billHistory = bills as Producto[][];
+      });
+  }
+
   back(): void {
+    this.prodService.clearBill();
     this.router.navigate(['home']);
   }
 

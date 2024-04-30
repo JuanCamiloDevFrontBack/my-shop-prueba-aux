@@ -8,8 +8,24 @@ export class ProductService {
 
   products: Producto[] = [];
   bill: Producto[] = [];
+  billHistory: Producto[][] = [];
 
   constructor() { }
+
+  // isRegisterDuplicateBill(addProduct: BillF): boolean {
+  //   const { productDetail, amountProduct } = structuredClone(addProduct);
+  //   const exist = this.bill.some(item => item.id === productDetail.id);
+
+  //   if (exist) {
+  //     const index = this.bill.findIndex(item => item.id === productDetail.id);
+  //     let amountProductNumber = Number(amountProduct);
+  //     this.bill[index][ProductE.amount] += amountProductNumber;
+  //     const ind = this.products.findIndex(produ => produ.id === productDetail.id);
+  //     this.products[ind][ProductE.amount] -= amountProductNumber;
+  //     return false;
+  //   }
+  //   return true;
+  // }
 
   isRegisterDuplicateBill(addProduct: BillF): boolean {
     const { productDetail, amountProduct } = structuredClone(addProduct);
@@ -19,8 +35,6 @@ export class ProductService {
       const index = this.bill.findIndex(item => item.id === productDetail.id);
       let amountProductNumber = Number(amountProduct);
       this.bill[index][ProductE.amount] += amountProductNumber;
-      const ind = this.products.findIndex(produ => produ.id === productDetail.id);
-      this.products[ind][ProductE.amount] -= amountProductNumber;
       return false;
     }
     return true;
@@ -30,8 +44,13 @@ export class ProductService {
     let sum = 0;
     billProd.forEach(prod => {
       sum += (prod[ProductE.amount] * prod[ProductE.price]);
-    }) 
+    })
     return sum;
+  }
+
+  clearBill(): void {
+    this.bill = [];
+    this.billHistory = [];
   }
 
   getRegistersHttpFake(): Promise<unknown> {
@@ -40,6 +59,10 @@ export class ProductService {
 
   getRegistersBillHttpFake(): Promise<unknown> {
     return Promise.resolve([...this.bill].concat([]));
+  }
+
+  getRegistersBillHistoryHttpFake(): Promise<unknown> {
+    return Promise.resolve([...this.billHistory].concat([]));
   }
 
   postCreateRegister(addProduct: Producto): Promise<unknown> {
@@ -94,8 +117,25 @@ export class ProductService {
     let amountProductNumber = Number(amountProduct);
 
     productDetail[ProductE.amount] = amountProductNumber;
-    this.bill.push(productDetail);    
+    this.bill.push(productDetail);
     this.products[index][ProductE.amount] -= amountProductNumber;
+    return Promise.resolve('alerts.bill.success.msg-1');
+  }
+
+  postAddRegisterBill2(addProduct: BillF): Promise<unknown> {
+    const { productDetail, amountProduct } = structuredClone(addProduct);
+
+    let amountProductNumber = Number(amountProduct);
+
+    productDetail[ProductE.amount] = amountProductNumber;
+    this.bill.push(productDetail);
+    // return Promise.resolve('alerts.bill.success.producto agregado a la factura');
+    return Promise.resolve('alerts.bill.success.msg-1');
+  }
+
+  postAddRegisterConfirmBill(addProductHistory: Producto[]): Promise<unknown> {
+    this.billHistory.push(addProductHistory);
+    this.bill = [];
     return Promise.resolve('alerts.bill.success.msg-1');
   }
 

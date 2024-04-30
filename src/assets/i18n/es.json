@@ -42,6 +42,9 @@
         "form": {
             "product": "Producto",
             "amount": "Cantidad"
+        },
+        "btns": {
+            "sellBill": "Vender Factura"
         }
     },
     "msg-errors": {

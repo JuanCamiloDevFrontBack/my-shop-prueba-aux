@@ -45,4 +45,16 @@ export class HttpApiService {
     return this.httpFake.postAddRegisterBill(addProduct);
   }
 
+  updateBill2Http(addProduct: BillF): Promise<unknown> {
+    return this.httpFake.postAddRegisterBill2(addProduct);
+  }
+
+  getBillHistoryHttp(): Promise<unknown> {
+    return this.httpFake.getRegistersBillHistoryHttpFake();
+  }
+
+  updateBillHistoryHttp(addProduct: Producto[]): Promise<unknown> {
+    return this.httpFake.postAddRegisterConfirmBill(addProduct);
+  }
+
 }
