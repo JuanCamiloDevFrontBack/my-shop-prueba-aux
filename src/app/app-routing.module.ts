@@ -9,13 +9,13 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'home', component: HomeComponent, 
-  canActivate: [authGuard]
+  // canActivate: [authGuard]
 },
   {
     path: 'sale-product',
     loadComponent: () => import('./features/components/sale-product/sale-product.component')
       .then(mod => mod.SaleProductComponent),
-    canActivate: [authGuard]
+    // canActivate: [authGuard]
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' },

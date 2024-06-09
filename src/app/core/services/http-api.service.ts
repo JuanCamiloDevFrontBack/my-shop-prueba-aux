@@ -41,12 +41,12 @@ export class HttpApiService {
     return this.httpFake.getRegistersBillHttpFake();
   }
 
+  // updateBillHttp(addProduct: BillF): Promise<unknown> {
+  //   return this.httpFake.postAddRegisterBill(addProduct);
+  // }
+
   updateBillHttp(addProduct: BillF): Promise<unknown> {
     return this.httpFake.postAddRegisterBill(addProduct);
-  }
-
-  updateBill2Http(addProduct: BillF): Promise<unknown> {
-    return this.httpFake.postAddRegisterBill2(addProduct);
   }
 
   getBillHistoryHttp(): Promise<unknown> {

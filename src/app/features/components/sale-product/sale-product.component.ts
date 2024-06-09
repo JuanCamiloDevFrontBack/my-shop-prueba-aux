@@ -27,7 +27,6 @@ export class SaleProductComponent implements OnInit, OnDestroy {
   productos: Producto[] = [];
   factura: Producto[] = [];
   billHistory: Producto[][] = [];
-  subTotal: number[] = [];
   total!: number;
 
   messages!: Message[];
@@ -71,15 +70,17 @@ export class SaleProductComponent implements OnInit, OnDestroy {
       .then(bill => {
         this.factura = bill as Producto[];
         this.total = (this.factura.length > 0) ?
-        this.prodService.calculateTotalSaleBill(this.factura) : 0;
+          this.prodService.calculateTotalSaleBill(this.factura) : 0;
       });
   }
 
   showAlertProducts(): void {
     if (this.productos.length === 0) {
-      const summary = this.alerts.i18n('alerts.warn');
-      const detail = this.alerts.i18n('alerts.bill.warning.empty-stock');
-      this.messages = [{ key: 'alert-product', severity: 'info', summary, detail }]
+      setTimeout(() => {
+        const summary = this.alerts.i18n('alerts.warn');
+        const detail = this.alerts.i18n('alerts.bill.warning.empty-stock');
+        this.messages = [{ key: 'alert-product', severity: 'info', summary, detail }];
+      }, 500);
     }
     else {
       this.messages = [];
@@ -106,10 +107,13 @@ export class SaleProductComponent implements OnInit, OnDestroy {
   }
 
   isValueInputValid(value: string): void {
+    const amount = Number(value);
+    const idProd = +this.inputProdForm().id;
     const isInvalid = (
-      isNaN(+value) ||
-      Number(value) < 1 ||
-      Number(value) > +this.inputProdForm()?.[ProductE.amount]
+      isNaN(amount) ||
+      amount < 1 ||
+      amount > +this.inputProdForm()?.[ProductE.amount] ||
+      amount > +this.prodService.isAmountMaxLimitStock(idProd)
     );
 
     if (isInvalid) {
@@ -123,39 +127,15 @@ export class SaleProductComponent implements OnInit, OnDestroy {
     return item.id;
   }
 
-  // addProduct(): void {
-  //   const methodMsg = (typeAlert: string, message: any) => {
-  //     this.billForm.reset();
-  //     this.showBill();
-  //     this.alerts.success({ summary: typeAlert, msg: message })
-  //   }
-
-  //   if (this.factura.length === 0) {
-  //     this.stockHttp.updateBill2Http(this.billForm.value)
-  //       .then(msg => methodMsg('alerts.ok', msg))
-  //       .catch(err => this.alerts.error({ summary: 'alerts.err', msg: err as string }));
-  //     return;
-  //   }
-
-  //   const newRegister = this.prodService.isRegisterDuplicateBill(this.billForm.value);
-  //   if (newRegister) {
-  //     this.stockHttp.updateBill2Http(this.billForm.value)
-  //       .then(msg => methodMsg('alerts.ok', msg))
-  //       .catch(err => this.alerts.error({ summary: 'alerts.err', msg: err as string }));
-  //   } else {
-  //     methodMsg('alerts.ok', 'alerts.bill.success.msg-2');
-  //   }
-  // }
-
   addProduct(): void {
     const methodMsg = (typeAlert: string, message: any) => {
       this.billForm.reset();
-      this.showBill();// no llamar a producto
+      this.showBill();
       this.alerts.success({ summary: typeAlert, msg: message })
     }
 
     if (this.factura.length === 0) {
-      this.stockHttp.updateBill2Http(this.billForm.value)
+      this.stockHttp.updateBillHttp(this.billForm.value)
         .then(msg => methodMsg('alerts.ok', msg))
         .catch(err => this.alerts.error({ summary: 'alerts.err', msg: err as string }));
       return;
@@ -163,7 +143,7 @@ export class SaleProductComponent implements OnInit, OnDestroy {
 
     const newRegister = this.prodService.isRegisterDuplicateBill(this.billForm.value);
     if (newRegister) {
-      this.stockHttp.updateBill2Http(this.billForm.value)
+      this.stockHttp.updateBillHttp(this.billForm.value)
         .then(msg => methodMsg('alerts.ok', msg))
         .catch(err => this.alerts.error({ summary: 'alerts.err', msg: err as string }));
     } else {
@@ -174,10 +154,12 @@ export class SaleProductComponent implements OnInit, OnDestroy {
   autorizeBill(): void {
     this.stockHttp.updateBillHistoryHttp(this.factura)
       .then(msg => {
-        this.showBill(true);
+        const refreshProducts = true;
+        this.showBill(refreshProducts);
         this.updateBillHistory();
         this.alerts.success({ summary: 'alerts.ok', msg: msg as string })
-      });
+      })
+      .catch(err => this.alerts.error({ summary: 'alerts.err', msg: err as string }));;
   }
 
   updateBillHistory(): void {

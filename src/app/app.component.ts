@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.isActiveHeader = false;
-    this.authService.loadPageLogin();
+    // this.authService.loadPageLogin();
   }
 
   routeIsActive(): void {
